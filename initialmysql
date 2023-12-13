@@ -1,1 +1,13 @@
+#Zweck:      Datenbank erstellen und konfigurieren
+#Autor:      Bischofberger Leonie, Riedener Samuel, Davatz Ben
+#Datum:      09.12.2023
+
+
+#!/bin/bash
+sudo apt-get update
+sudo apt-get -y install mysql-server 
+                 
+git clone https://github.com/leonie04/Modul-346
+sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql
+sudo service mysql start
 
