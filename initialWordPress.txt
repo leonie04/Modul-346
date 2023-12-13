@@ -1,6 +1,9 @@
+#Zweck:      Installationsverzeichnis erstellen und konfigurieren
+#Autor:      Bischofberger Leonie, Riedener Samuel, Davatz Ben
+#Datum:      09.12.2023
 # PHP und Apache isntallieren
-# installationsverzeichnis erstellen und befüllen
-# 
+# Installationsverzeichnis erstellen und befüllen
+# Apache und 
 
 #!/bin/bash
 sudo apt-get update
