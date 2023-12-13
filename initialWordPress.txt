@@ -22,11 +22,11 @@ sudo mkdir -p /srv/www
 sudo chown www-data: /srv/www
 curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www
 git clone https://github.com/leonie04/Modul-346
-sudo mv Modul-346/Configs/wordpress.conf /etc/apache2/sites-available/
+sudo cp Modul-346/Configs/wordpress.conf /etc/apache2/sites-available/
 sudo a2ensite wordpress
 sudo a2enmod rewrite
 sudo a2dissite 000-default
 sudo service apache2 reload
 sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql
 sudo service mysql start
-sudo mv Modul-346/Configs/wp-config.php /srv/www/wordpress/
+sudo cp Modul-346/Configs/wp-config.php /srv/www/wordpress/
