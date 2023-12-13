@@ -1,2 +1,2 @@
 # Modul-346
-Bild verkleinern
+Setup eines Content Management Systems mit dem aws cli programm.
