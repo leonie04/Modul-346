@@ -10,8 +10,11 @@ Datum:      09.12.2023
 -- Berechtigungen aktualisieren/aktivieren
 
 CREATE DATABASE wordpress;
-CREATE USER wordpress@localhost IDENTIFIED BY 'Pa55wort';
+CREATE USER 'wordpress'@'%' IDENTIFIED BY 'Vz7,4*,4C3Y7';
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
   ON wordpress.*
-  TO wordpress@localhost;
+  TO 'wordpress'@'%';
 FLUSH PRIVILEGES;
+
+
+
