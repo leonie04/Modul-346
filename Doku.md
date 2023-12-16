@@ -1,4 +1,4 @@
-# <center>M364 Projekt Bild verkleinern</center>
+# <center>M364 Einrichten eines CMS</center>
 Ben, Samuel, Leonie
 
 
@@ -18,7 +18,18 @@ Ben, Samuel, Leonie
    4.1 [Unterkapitel](#41-unterkapitel) 
 
 
-## 1. Tabelle einfügen
+## 1. Zweck des Skripts und Git Repository
+Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und in AWS EC2. Der komplette prozess der erstellung wird mit Github Dokumentiert und kommenntiert.
+
+
+## 2. Voraussetzugen
+Das initialWordPress.sh skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen initialmysql.txt und initialWordPress.txt müssen im gleichen Ordner wie das initialWordPress.sh sein.
+
+
+
+
+
+
 
    | Spalte 1 | Spalte 2 |
    |----------|----------|
