@@ -110,11 +110,24 @@ Testdurchführung und Testergebnis
    | Mangelbeschrei-bung | Die SQL-Datenbank war offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online. |
    | Bemerkungen | Der User Wordpress besitzt die Berechtigung SELECT, INSERT, UP-DATE, DELETE, CREATE, DROP und ALTER  |  
 
+## 3. Reflexion
+Im folgenden Kapitel werden wir unser Projekt reflektieren und Verbesserungsvorschläge darlegen.
+
+### 3.1 Bischofberger Leonie
+Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses Projekt bekammen wollten wir zuerst das Projekt "Bild verkleinerung" umsetzen. Nach einigen Recherchen mussten wir aber feststellen, dass wir aktuell nicht über einen genug grossen Wissensstand verfügten um diese Projekt umzusetzen. Deshalb haben wir uns shclussendlich für dieses Projekt entschieden. Zu beginn war ich auch bei diesem Projekt etwas überfordert, doch mti der Hilfe von Samuel Riedener fand ich schnell heraus wie wir dieses Projekt angehen mussten und wo wir uns Informationen beschaffen konnten. Danach hatten wir sehr schnell die erste Version unseres Scripts zur einrichtung des CMS in AWS. Leider haben wir uns dann ein bisschen auf unseren Lorbeeren ausgeruht und stellten erst später fest, dass wir unsere SQL-Datenbank auf einer zweiten Instance haben müssen. Daurch kam ich etwas in den Stress, da ich sehr viel Recherche tätigen musste um diese Änderung umzusetzen. Dadurch dass das Thema AWs für uns alle neu war und wir auch noch nie in einem Projekt GitHub zur Dokumentation verwenden durften, haben wir unsere Projekt sehr gut umgesetz. Als Verbesserungspunkte für ein Weiteres Projekt würde ich neben Github noch ein Kanban System einsetzen, damit die verschiedenen Aufgaben des Projekts klar aufgelistet werden könne. Denn bei diesem Projekt war ich mir nicht immer sicher woran die anderen Teammitglieder arbeiten und somit war es Teils sehr schwer den anderen zu helfen oder den überblick zu behalten welche Aufgabne noch erledigt werden müssen. Mit einem Kanban System wäre diese Problem gelöst und es wäre durch wneige Klicks sichtbar welche Aufgaben noch offen sind und woran die anderen Teammitglieder arbeiten. Ebenfalls würde ich bei einem weiteren Projekt gleich bei Beginn Meetings festlegen an denen alle Teammitglieder teilnehmen und sich austauschen, welche Aufgaben wer übernimmt und wo man noch Hilfe benötigt.
+
+### 3.2 Davatz Ben
+
+### 3.3 Riedener Samuel
+
+
+## 3. Formatierungen
    | Spalte 1 | Spalte 2 |
    |----------|----------|
    | Inhalt 1 | Inhalt 2 |
    | Inhalt 3 | Inhalt 4 |
    | grosser Inhalt 1 | grosser Inhalt 2 |
+
 
 ### 1.1 Unterkapitel
 
@@ -122,11 +135,11 @@ Testdurchführung und Testergebnis
   UnterkapitelUnterkapitel Unterkapitel  Unterkapitel UnterkapitelUnterkapitel UnterkapitelUnterkapitelUnterkapitelUnterkapitelUnterkapitel
 
 
-## 2. Bild einfügen
+## 3. Reflexion
+
 
    ![Bild Baum]([https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.baumpflegeportal.de%2Faktuell%2Fstarke-baumtypen-baum-seidengewand%2F&psig=AOvVaw3BJUOU8hw4QeMupOjJ_ACr&ust=1702492127631000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCICTjcnDioMDFQAAAAAdAAAAABAD])
 
-## 3. Formatierungen
 
  **Fettschrift** \
  *Kursivschrift*
