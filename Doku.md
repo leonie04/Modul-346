@@ -1,5 +1,5 @@
 # <center>M364 Einrichten eines CMS</center>
-Ben, Samuel, Leonie
+Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 
 
@@ -19,7 +19,7 @@ Ben, Samuel, Leonie
 
 
 ## 1. Zweck des Skripts und Git Repository
-Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und in AWS EC2. Der komplette prozess der erstellung wird mit Github Dokumentiert und kommenntiert.
+Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
 
 
 ## 2. Voraussetzugen
