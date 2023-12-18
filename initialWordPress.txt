@@ -38,9 +38,5 @@ sudo a2enmod rewrite
 sudo a2dissite 000-default
 sudo service apache2 reload
 
-# MySQL_Setup.sql ausführen und MySQL-Server starten
-sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql
-sudo service mysql start
-
 # Wordpress konfigurationsdatei in Worpress Installationsorder kopieren
 sudo cp Modul-346/Configs/wp-config.php /srv/www/wordpress/
