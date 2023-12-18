@@ -42,9 +42,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     define( 'ABSPATH', __DIR__ . '/' );
 }
 
-/** Sets up WordPress vars and included files. */
-require_once ABSPATH . 'wp-settings.php';
-
 /** Direct Database Connection */
 mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
