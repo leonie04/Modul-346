@@ -37,13 +37,9 @@ define( 'DB_CHARSET', 'utf8' );
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
-/** Absolute path to the WordPress directory. */
-if ( ! defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', __DIR__ . '/' );
-}
 
 /** Direct Database Connection */
-mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+@mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 
 /**#@+
