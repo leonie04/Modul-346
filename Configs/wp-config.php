@@ -37,14 +37,17 @@ define( 'DB_CHARSET', 'utf8' );
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
-$connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
-// Verbindung überprüfen
-if (!$connection) {
-    die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
+/** Absolute path to the WordPress directory. */
+if ( ! defined( 'ABSPATH' ) ) {
+    define( 'ABSPATH', __DIR__ . '/' );
 }
 
-echo "Verbindung zur Datenbank erfolgreich hergestellt";
+/** Sets up WordPress vars and included files. */
+require_once ABSPATH . 'wp-settings.php';
+
+/** Direct Database Connection */
+mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
 
 /**#@+
  * Authentication unique keys and salts.
