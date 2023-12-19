@@ -25,6 +25,8 @@ Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in A
 ## 2. Voraussetzugen
 Das initialWordPress.sh skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen initialmysql.txt und initialWordPress.txt müssen im gleichen Ordner wie das initialWordPress.sh sein.
 
+## 3. Umsetzung
+
 
 ## 3. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
@@ -114,11 +116,35 @@ Testdurchführung und Testergebnis
 Im folgenden Kapitel werden wir unser Projekt reflektieren und Verbesserungsvorschläge darlegen.
 
 ### 4.1 Bischofberger Leonie
-Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses Projekt bekammen wollten wir zuerst das Projekt "Bild verkleinerung" umsetzen. Nach einigen Recherchen mussten wir aber feststellen, dass wir aktuell nicht über einen genug grossen Wissensstand verfügten um diese Projekt umzusetzen. Deshalb haben wir uns shclussendlich für dieses Projekt entschieden. Zu beginn war ich auch bei diesem Projekt etwas überfordert, doch mti der Hilfe von Samuel Riedener fand ich schnell heraus wie wir dieses Projekt angehen mussten und wo wir uns Informationen beschaffen konnten. Danach hatten wir sehr schnell die erste Version unseres Scripts zur einrichtung des CMS in AWS. Leider haben wir uns dann ein bisschen auf unseren Lorbeeren ausgeruht und stellten erst später fest, dass wir unsere SQL-Datenbank auf einer zweiten Instance haben müssen. Daurch kam ich etwas in den Stress, da ich sehr viel Recherche tätigen musste um diese Änderung umzusetzen. Dadurch dass das Thema AWs für uns alle neu war und wir auch noch nie in einem Projekt GitHub zur Dokumentation verwenden durften, haben wir unsere Projekt sehr gut umgesetz. Als Verbesserungspunkte für ein Weiteres Projekt würde ich neben Github noch ein Kanban System einsetzen, damit die verschiedenen Aufgaben des Projekts klar aufgelistet werden könne. Denn bei diesem Projekt war ich mir nicht immer sicher woran die anderen Teammitglieder arbeiten und somit war es Teils sehr schwer den anderen zu helfen oder den überblick zu behalten welche Aufgabne noch erledigt werden müssen. Mit einem Kanban System wäre diese Problem gelöst und es wäre durch wneige Klicks sichtbar welche Aufgaben noch offen sind und woran die anderen Teammitglieder arbeiten. Ebenfalls würde ich bei einem weiteren Projekt gleich bei Beginn Meetings festlegen an denen alle Teammitglieder teilnehmen und sich austauschen, welche Aufgaben wer übernimmt und wo man noch Hilfe benötigt.
+Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses Projekt bekammen, wollten wir zuerst das Projekt "Bild verkleinerung" umsetzen. Nach einigen Recherchen mussten wir aber feststellen, dass wir aktuell nicht über einen genug grossen Wissensstand verfügten um diese Projekt umzusetzen. Deshalb haben wir uns schlussendlich für dieses Projekt entschieden. Zu Beginn war ich auch bei diesem Projekt etwas überfordert, doch mti der Hilfe von Samuel Riedener fand ich schnell heraus wie wir dieses Projekt angehen mussten und wo wir uns Informationen beschaffen konnten. Danach hatten wir sehr schnell die erste Version unseres Scripts zur einrichtung des CMS in AWS. Diese Version hat auch sehr gut funktioniert und hat die gewünschten Instancen mit den richtigen konfigurationen erstellt. Leider haben wir uns dann ein bisschen auf unseren Lorbeeren ausgeruht und stellten erst später fest, dass wir unsere SQL-Datenbank auf einer zweiten Instance haben müssen. Daurch kam ich etwas in den Stress, da ich sehr viel Recherche tätigen musste um diese Änderung umzusetzen. Schlussendlich musste ich aber merken, dass diese zusätzliche Änderung grundsätzlich ganz simpel einführbar sit. Dafür dass das Thema AWs für uns alle neu war und wir auch noch nie in einem Projekt GitHub zur Dokumentation verwenden durften, haben wir unsere Projekt sehr gut umgesetz. Als Verbesserungspunkte für ein Weiteres Projekt würde ich neben Github noch ein Kanban System einsetzen, damit die verschiedenen Aufgaben des Projekts klar aufgelistet werden könne. Denn bei diesem Projekt war ich mir nicht immer sicher woran die anderen Teammitglieder arbeiten und somit war es Teils sehr schwer den anderen zu helfen oder den überblick zu behalten welche Aufgabne noch erledigt werden müssen. Mit einem Kanban System wäre diese Problem gelöst und es wäre durch wneige Klicks sichtbar welche Aufgaben noch offen sind und woran die anderen Teammitglieder arbeiten. Ebenfalls würde ich bei einem weiteren Projekt gleich bei Beginn Meetings festlegen an denen alle Teammitglieder teilnehmen und sich austauschen, welche Aufgaben wer übernimmt und wo man noch Hilfe benötigt.
 
 ### 4.2 Davatz Ben
 
 ### 4.3 Riedener Samuel
+
+## 3. Quellen
+### 4.2 Internetquellen
+Für unser haben wir zur Recherche hauptächlich die offizielle AWs seite genutz um sicherzustellen dass die gefundenen Varianten auch in unserere Umgebung umsetzbar sind.
+   |Quellen | Datum |
+   |----------|----------|
+   | https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/ | 17.12.2023 |
+   | https://ubuntu.com/tutorials/install-and-configure-wordpress#1-overview | 09.12.2023 |
+   | https://solvedevops.com.au/docs/wordpress/wordpress-on-aws-getting-started/ | 09.12.2023 |
+   | https://dev.to/aws-builders/deploy-wordpress-on-ec2-by-wordpress-ami-2mog | 09.12.2023 |
+   | https://docs.aws.amazon.com/de_de/managedservices/latest/appguide/ex-create-wp-stack.html | 09.12.2023 |
+   | https://aws.amazon.com/de/solutions/retail/content-management-system/ | 09.12.2023 |
+
+### 4.2 Dokumentquellen
+Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer wieder DOkumente bekommen mit denen wir 
+   |Quellen | Datum |
+   |----------|----------|
+   | 346-05-AA-Vm-mit-Apache-auf-Cloud.pdf | 17.12.2023 |
+   | 06-AA-Cloud-Oekonomie.pdf | 09.12.2023 | 
+   | 09-AA-EC2-Instance-CLI.pdf | 09.12.2023 |
+   | 346-10-AA-IaC Beispiel.pdf | 09.12.2023 |
+   | 09-AA-EC2-Instance-CLI.pdf | 09.12.2023 |
+
+
 
 
 ## 3. Formatierungen
