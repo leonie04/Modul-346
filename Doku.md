@@ -132,7 +132,7 @@ Schlussendlich wird der SQL Server mit dem Namen mysql gestartet.
 ### 3.3 Configs
 Configs werden MYSQL und Wordpress konfiguriert.
 
-#### 3.3 MySQL_Setup.sql
+#### 3.3 wordpress.conf
 Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host für den WordPress-Webserver konfiguriert.
 
   `<VirtualHost *:80>
@@ -151,7 +151,26 @@ Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host f�
 
 Mit diesesen Befehlen wird zuerst ein Hauptverzeichnis definiert und anschliessend konfiguriert. Bei der Konfiguration das folgen von symbolischen Links aktiviert und das Überschreiben von Konfigurationen in .htacces-Dateien erlaubt. Zusätzlich wird der Standartindex auf index.php gesetzt und der Zugriff auf alle Anfragen erlaubt. Anschliessend wird das Verzeichnis wp-content konfiguriert. Dabei wird das folgen von symbolischen Links erlaubt und der Zugriff auf alle Anfragen erlaubt.
 
+#### 3.3 MySQL_Setup.sql
+Mit diesem Script wird die WordPress Datenbank erstellt und eingerichtet. 
 
+ `CREATE DATABASE wordpress;`
+
+ Mit diesem Befehl wird die Wordpress Datenbank mit dem Namen wordpress erstellt.
+ 
+ `CREATE USER 'wordpress'@'%' IDENTIFIED BY 'Vz7,4*,4C3Y7';`
+
+ Mit diesem Befehl wird der Benutzer wordpress erstellt und so konfiguriert, dass er von überall Zugreifen kann.
+ 
+ `GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
+  ON wordpress.*
+  TO 'wordpress'@'%';`
+
+Dem eben erstellten Benutzer wordpress werden die Berechtigungen Select, Insert, Update, Delete, Create, Drop und Alter erteilt.
+  
+ `FLUSH PRIVILEGES;`
+ 
+Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
  
 ## 3. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
