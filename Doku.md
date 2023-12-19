@@ -66,6 +66,49 @@ Mit deisem Befehl wird die Ip-Adresse der MYSQL -Instanz abegrufen und in der Va
 Mit diesem Befehl wird die Sicherheitsgruppe wordpress-sec-group aktualisert und der SSH Zugriff über die IP-Adresse der MySQL-Instanz erhlaubt.
 
 
+### 3.1 Script installWordPress.txt erklärt
+Mit dem initialWordPress.txt Script wir auf der Instance WordPress installiert und konfiguriert.
+
+
+  `sudo apt-get update
+sudo apt-get -y install apache2 \
+                 ghostscript \
+                 libapache2-mod-php \
+                 php \
+                 php-bcmath \
+                 php-curl \
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip`
+Mit diesem Befehl die Instance geupdatet. Anschliessend werden Apache2, Ghostsscript, und PHP installiert.
+
+
+  `sudo mkdir -p /srv/www
+sudo chown www-data: /srv/www`
+Das Verzeichnis /srv/www erstellen und dem Webserver Schreibzugriff gewähren.
+
+  `curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www`
+Mit diesem Befehl wird die neuste Wordpressversion heruntergeladen. 
+
+  `git clone https://github.com/leonie04/Modul-346
+sudo cp Modul-346/Configs/wordpress.conf /etc/apache2/sites-available/`
+Nun wird das Git geklont und wordpress.conf in das Verzeichnis des virtuellen Hosts kopieren.
+
+  `sudo a2ensite wordpress
+sudo a2enmod rewrite`
+Anschliessend wird Wordpress in Apache aktiviert und rewrite für die URL-Umleitung aktiviert.
+
+  `sudo a2dissite 000-default
+sudo service apache2 reload`
+Mit diesem Befehl wird die Standartseite in Apache deaktivieren und die Konfigurationen neugeladen.
+
+  `sudo cp Modul-346/Configs/wp-config.php /srv/www/wordpress/`
+Zum Schluss wird die Wordpress konfigurationsdatei in den Worpress Installationsorder kopiert.
+
  
 ## 3. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
