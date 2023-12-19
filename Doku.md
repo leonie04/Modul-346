@@ -21,7 +21,24 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 ## 1. Zweck des Skripts und Git Repository
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
 
+## 1. Plannung
+Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.3023 fertig haben, damit wir anschliessend noch genügend Zeit für die DOkumentation und alfällige Fehlerbehebung haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das Dokumentieren aufteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
 
+   | Tätigkeit | Person | Zeitrahmen |
+   |----------|----------|----------|
+   | Plannung | Bischofberger Leonie | 06.12.2023 |
+   | Dokumentation erstellen | Davatz Ben | 06.12.2023 |
+   | Instancen installieren | Bischofberger Leonie, Riedener Samuel | 06. - 13.12.2023 |
+   | WordPress installieren | Bischofberger Leonie, Riedener Samuel | 06. - 13.12.2023 |
+   | WordPress konfigurieren | Bischofberger Leonie, Riedener Samuel | 06. - 13.12.2023 |
+   | MySQL installieren | Bischofberger Leonie, Riedener Samuel | 06. - 13.12.2023 |
+   | MySQL konfigurieren | Bischofberger Leonie, Riedener Samuel | 06. - 13.12.2023 |
+   | Tests | Bischofberger Leonie, Riedener Samuel, Davatz Ben | 13. - 17.12.2023 |
+   | Dokumentation der Scripts | Davatz Ben | 13. - 17.12.2023 |
+   | Dokumentation | Davatz Ben | 13. - 17.12.2023 |
+   | Reflexion | Bischofberger Leonie, Riedener Samuel, Davatz Ben | 17. - 19.12.2023 |
+   | Abschluss | Bischofberger Leonie, Riedener Samuel, Davatz Ben | 17. - 19.12.2023 |
+   
 ## 2. Voraussetzugen
 Das initialWordPress.sh skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen initialmysql.txt und initialWordPress.txt müssen im gleichen Ordner wie das initialWordPress.sh sein.
 
@@ -218,23 +235,6 @@ Dem eben erstellten Benutzer wordpress werden die Berechtigungen Select, Insert,
  
 Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 ## 3. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
@@ -286,7 +286,7 @@ Testdurchführung und Testergebnis
    | Tester | Riedener Samuel |
    | Mängelklasse | 0 |
    | Mangelbeschrei-bung | Der Test wurde erfolgreich durchgeführt. |
-   | Bemerkungen | Die Startseite der Wordpress-Instance konnte im Browser geöffnet werden.  |
+   | Bemerkungen | Die Startseite der Wordpress-Instance konnte im Browser geöffnet werden. Damit wurde steht der Webserver zurverfügung.  |
 
 ### 3.4 Testfall 4 
    |ID / Bezeichnung | T-004 Prüfen, ob SQL-Datenbank online ist |
@@ -302,7 +302,7 @@ Testdurchführung und Testergebnis
    | Tester | Riedener Samuel |
    | Mängelklasse | 1 |
    | Mangelbeschrei-bung | Die SQL-Datenbank war offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online. |
-   | Bemerkungen | Die SQL-Datenbank ist online.  |   
+   | Bemerkungen | Die SQL-Datenbank ist online. Die Datenbank wurde somit korrekt aufgesetz und kann verwendet werden. |   
 
 ### 3.5 Testfall 5 
    |ID / Bezeichnung | T-005 SQL User Berechtigung prüfen |
