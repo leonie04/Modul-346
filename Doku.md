@@ -132,6 +132,52 @@ Schlussendlich wird der SQL Server mit dem Namen mysql gestartet.
 ### 3.3 Configs
 Configs werden MYSQL und Wordpress konfiguriert.
 
+#### 3.3 wp-config.php
+Dieses Script wird als konfigurationsgrundlage für die Installation von Worpress verwendet. Dieses config wird von Worpress bereitgestellt und man kann darin noch seine eigenen Variablen einfügen.
+
+  `define( 'DB_NAME', 'wordpress' );
+define( 'DB_USER', 'wordpress' );
+define( 'DB_PASSWORD', 'Vz7,4*,4C3Y7' );
+define( 'DB_HOST', '%' );
+define( 'DB_CHARSET', 'utf8' );
+define( 'DB_COLLATE', '' );`
+
+Mit diesen Befehlen werden die folgednen Elemente definiert: Datenbankname, Datenbankuser, Datenbankpasswort, Datenbankhostnamen und Datenbankcharset 
+
+  `mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);`
+
+Mit diesem Befehl wird die Datenbank verbunden. Dazu werden die oben definierten Elemente verwendet.
+
+
+  `define('AUTH_KEY',         '4^*;gYe@h>iOHX/Q8YwJ[F{h)Wq@!n%76uWqcjjUrH-+udb2B[OrB*8$(>M}78II');`
+  `define('SECURE_AUTH_KEY',  '5SI@(M+l]}GU|u3*m1;zWV5Cw3y#g<H3T2s%-ydT_|Xt3!1m {k)D&mLU+ G/FOH');`
+  `define('LOGGED_IN_KEY',    'Z%-oXcX2`TDK}xV.DOq]^`41juCRi4tzA}^#+OvllHl4#p|X)/ u-~!K$}O}sVyW');`
+  `define('NONCE_KEY',        '^f}0|qU4+%-%`dA2>%^HWMBUeOVWyR>fQ9Om-b0>kin)mHl7SDLIm7em|aaAc9[Z');`
+  `define('AUTH_SALT',        'jSewMFUv{5q`|/.+1@upg5GAmt;-.~N0wO$${Yp{/)M%_iH_.LGg>v|Mj2&Ii>EQ');`
+  `define('SECURE_AUTH_SALT', '@]1~{mpNVaMm{0p!qA4V8Q!%2RXx:#>J6+u;2psy~4X-:4s;dxrte7j<UUYu.WwL');`
+  `define('LOGGED_IN_SALT',   'iyc+jAF5(X95FkYqg{|6>T7%kQ=;3LD>k!1Gv[HE!>)Cdk%|P>w)E/wg=4G+(<d/');`
+  `define('NONCE_SALT',       'T4fU0<WU(289+6DpqhQT+!=6oTo<f{K;x tOE`0@z#2[jc1~#-RoN::5-(+w?Cr|');`
+
+Mit diesen Befehlen werden einzigartige Schlüssel für die Authentifizierung definiert.
+
+
+  `$table_prefix = 'wp_';`
+
+Mit diesem Befehl wird der Wordpress Datenbank ein eindeutiger Tabellenpräfix zugewiesen.
+
+
+  `define( 'WP_DEBUG', false );`
+
+Mit diesem Befehl kann der WordPress-Debugging-Modus aktiviert werden. Aktuell ist dieser aber deaktiviert.
+
+
+`if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', __DIR__ . '/' );
+}
+require_once ABSPATH . 'wp-settings.php';`
+
+Mit diesem Befhel werden eingeschlossene Datien von WordPress_Vars eingerichtet.
+
 #### 3.3 wordpress.conf
 Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host für den WordPress-Webserver konfiguriert.
 
@@ -171,6 +217,24 @@ Dem eben erstellten Benutzer wordpress werden die Berechtigungen Select, Insert,
  `FLUSH PRIVILEGES;`
  
 Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 ## 3. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
