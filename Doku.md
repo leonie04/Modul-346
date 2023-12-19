@@ -21,7 +21,7 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 ## 1. Zweck des Skripts und Git Repository
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
 
-## 1. Plannung
+## 2. Plannung
 Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.3023 fertig haben, damit wir anschliessend noch genügend Zeit für die DOkumentation und alfällige Fehlerbehebung haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das Dokumentieren aufteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
 
    | Tätigkeit | Person | Zeitrahmen |
@@ -39,12 +39,12 @@ Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Ze
    | Reflexion | Bischofberger Leonie, Riedener Samuel, Davatz Ben | 17. - 19.12.2023 |
    | Abschluss | Bischofberger Leonie, Riedener Samuel, Davatz Ben | 17. - 19.12.2023 |
    
-## 2. Voraussetzugen
+## 3. Voraussetzugen
 Das initialWordPress.sh skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen initialmysql.txt und initialWordPress.txt müssen im gleichen Ordner wie das initialWordPress.sh sein.
 
-## 3. Umsetzung
+## 4. Umsetzung
 Um Wordpress in AWs zu installieren haben wir verschiedene Script erstellt. Diese werden wir in diesem Kapitel erläutern.
-### 3.1 Script installWordPress.sh erklärt
+### 4.1 Script installWordPress.sh erklärt
 Mit dem installWordPress.sh script werden zwei Instancen mit den dazugehörigen Schlüsselpaaren udn Sicherehitgruppen erstellt.
 
  
@@ -78,7 +78,7 @@ Mit deisem Befehl wird die Ip-Adresse der MYSQL -Instanz abegrufen und in der Va
 Mit diesem Befehl wird die Sicherheitsgruppe wordpress-sec-group aktualisert und der SSH Zugriff über die IP-Adresse der MySQL-Instanz erhlaubt.
 
 
-### 3.1 Script installWordPress.txt erklärt
+### 4.2 Script installWordPress.txt erklärt
 Mit dem initialWordPress.txt Script wir auf der Instance WordPress installiert und konfiguriert.
 
 
@@ -128,7 +128,7 @@ Mit diesem Befehl wird die Standartseite in Apache deaktivieren und die Konfigur
 Zum Schluss wird die Wordpress konfigurationsdatei in den Worpress Installationsorder kopiert.
 
 
-### 3.3 Script initialMySQL.txt erklärt
+### 4.3 Script initialMySQL.txt erklärt
 Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfiguriert.
 
   `sudo apt-get update
