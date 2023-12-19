@@ -26,7 +26,46 @@ Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in A
 Das initialWordPress.sh skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen initialmysql.txt und initialWordPress.txt müssen im gleichen Ordner wie das initialWordPress.sh sein.
 
 ## 3. Umsetzung
+Um Wordpress in AWs zu installieren haben wir verschiedene Script erstellt. Diese werden wir in diesem Kapitel erläutern.
+### 3.1 Script installWordPress.sh erklärt
+Mit dem installWordPress.sh script werden zwei Instancen mit den dazugehörigen Schlüsselpaaren udn Sicherehitgruppen erstellt.
 
+
+ *aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem*
+ 
+Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Der private Schlüssel wird exportiert udn in die Datei: ~/.ssh/aws-wordpress-cli.pem geschrieben.
+
+
+ *aws ec2 create-security-group --group-name wordpress-sec-group --description "EC2-WordPress-SG"
+aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 80 --cidr 0.0.0.0/0
+aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 443 --cidr 0.0.0.0/0
+aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 22 --cidr 0.0.0.0/0*
+
+Mit diesen Befehlen wird eine Sicherheitgruppe namens "wordpress-sec-group" und der Beschreibung "EC2-WordPress-SG" erstellt. Bei der erstellten Sicherheitsgruppe wird der Zugriff über HTTP (Port 80), HTTPS (Port 443) und SSH (Port 22) von überall (0.0.0.0/0) freigegeben.
+
+
+ *aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialMySQL.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MySQL}]' --no-paginate
+aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialWordPress.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=WordPress}]' --no-paginate*
+
+Mit diesen Befehlen werden zwei Instancen mit den Namen "MySQL" und "WordPress" gestartet. Den Instanzen werden die zuBeginn erstellte Sicherheitgruppe und Schlüsselpaar mitgegeben. Zusätzlich wir ein Instanzprofil mit dem Namen "LabInstanceProfile" hinzugefügt.
+
+
+ *chmod 600 ~/.ssh/aws-wordpress-cli.pem*
+ 
+Dieser Befehl so dass nur der Besitzer die Datei lesen und bearbeiten kann.
+
+
+ *public_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=mysql" --query "Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output json | jq -r '.[][].PublicIP')*
+
+Mit deisem Befehl wird die Ip-Adresse der MYSQL -Instanz abegrufen und in der Variable "public_ip" abgespeichert.
+
+ 
+ *aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 22 --cidr $public_ip/32*
+
+Mit diesem Befehl wird die Sicherheitsgruppe wordpress-sec-group aktualisert und der SSH Zugriff über die IP-Adresse der MySQL-Instanz erhlaubt.
+
+
+ 
 
 ## 3. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
