@@ -112,7 +112,22 @@ Zum Schluss wird die Wordpress konfigurationsdatei in den Worpress Installations
 
 
 ### 3.3 Script initialMySQL.txt erklärt
-Mit dem initialWordPress.txt Script wir auf der Instance WordPress installiert und konfiguriert.
+Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfiguriert.
+
+  `sudo apt-get update
+sudo apt-get -y install mysql-server` 
+
+Mit diesen Befehlen wird zuerst die Instanz geupdatet und anschliessend den mysql-server zu installieren.
+                 
+  `git clone https://github.com/leonie04/Modul-346
+  sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql` 
+
+Da Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird die Date MySQL_Setup.sql ausgeführt.
+
+  `sudo service mysql start`
+
+Schlussendlich wird der SQL Server mit dem Namen mysql gestartet.
+
  
 ## 3. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
