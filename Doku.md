@@ -128,6 +128,30 @@ Da Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird di
 
 Schlussendlich wird der SQL Server mit dem Namen mysql gestartet.
 
+
+### 3.3 Configs
+Configs werden MYSQL und Wordpress konfiguriert.
+
+#### 3.3 MySQL_Setup.sql
+Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host für den WordPress-Webserver konfiguriert.
+
+  `<VirtualHost *:80>
+    DocumentRoot /srv/www/wordpress
+    <Directory /srv/www/wordpress>
+        Options FollowSymLinks
+        AllowOverride Limit Options FileInfo
+        DirectoryIndex index.php
+        Require all granted
+    </Directory>
+    <Directory /srv/www/wordpress/wp-content>
+        Options FollowSymLinks
+        Require all granted
+    </Directory>
+</VirtualHost>`
+
+Mit diesesen Befehlen wird zuerst ein Hauptverzeichnis definiert und anschliessend konfiguriert. Bei der Konfiguration das folgen von symbolischen Links aktiviert und das Überschreiben von Konfigurationen in .htacces-Dateien erlaubt. Zusätzlich wird der Standartindex auf index.php gesetzt und der Zugriff auf alle Anfragen erlaubt. Anschliessend wird das Verzeichnis wp-content konfiguriert. Dabei wird das folgen von symbolischen Links erlaubt und der Zugriff auf alle Anfragen erlaubt.
+
+
  
 ## 3. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
