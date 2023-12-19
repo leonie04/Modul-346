@@ -5,18 +5,37 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 ## 1. Inhaltsverzeichnis
 
-1. [Tabelle einfügen](#1-tabelle-einfügen) \
-   1.1 [Unterkapitel](#11-unterkapitel)
+1. [Zweck des Skripts und Git Repository](#1-tabelle-einfügen) \
 
-2. [Bild einfügen](#2-bild-einfügen) \
-   2.1 [Unterkapitel](#21-unterkapitel)
+2. [Plannung](#2-bild-einfügen) \
 
-3. [Formatierungen](#3-formatierungen) \
-   3.1 [Unterkapitel](#31-unterkapitel)
+3. [Voraussetzugen](#3-formatierungen) \
 
-4. [Weitere Funktionen](#4-weitere-funktionen) \
-   4.1 [Unterkapitel](#41-unterkapitel) 
-
+4. [Umsetzung](#4-weitere-funktionen) \
+   4.1 [Script installWordPress.sh erklärt](#41-unterkapitel)
+   4.2 [Script initialWordPress.txt erklärt](#41-unterkapitel)
+   4.3 [Script initialMySQL.txt erklärt](#41-unterkapitel)
+   4.4 [Configs](#41-unterkapitel) 
+	4.4.1 [wp-config.php](#41-unterkapitel)
+   	4.4.2 [wordpress.conf](#41-unterkapitel)
+   	4.4.3 [MySQL_Setup.sql](#41-unterkapitel)
+   	4.4.4 [Configs](#41-unterkapitel)
+   
+5. [Tests](#4-weitere-funktionen) \
+   5.1 [Testfall 1 ](#41-unterkapitel)
+   5.2 [Testfall 2 ](#41-unterkapitel)
+   5.3 [Testfall 3 ](#41-unterkapitel)
+   5.4 [Testfall 4 ](#41-unterkapitel)
+   5.5 [Testfall 5 ](#41-unterkapitel)
+   
+6. [Reflexion](#4-weitere-funktionen) \
+   6.1 [Bischofberger Leonie](#41-unterkapitel)
+   6.2 [Riedener Samuel](#41-unterkapitel)
+   6.3 [Davatz Ben](#41-unterkapitel)
+   
+7. [Quellen](#4-weitere-funktionen) \
+   7.1 [Internetquellen](#41-unterkapitel) 
+   7.2 [Dokumentquellen](#41-unterkapitel) 
 
 ## 1. Zweck des Skripts und Git Repository
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
@@ -78,7 +97,7 @@ Mit deisem Befehl wird die Ip-Adresse der MYSQL -Instanz abegrufen und in der Va
 Mit diesem Befehl wird die Sicherheitsgruppe wordpress-sec-group aktualisert und der SSH Zugriff über die IP-Adresse der MySQL-Instanz erhlaubt.
 
 
-### 4.2 Script installWordPress.txt erklärt
+### 4.2 Script initialWordPress.txt erklärt
 Mit dem initialWordPress.txt Script wir auf der Instance WordPress installiert und konfiguriert.
 
 
@@ -146,10 +165,10 @@ Da Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird di
 Schlussendlich wird der SQL Server mit dem Namen mysql gestartet.
 
 
-### 3.3 Configs
+### 4.4 Configs
 Configs werden MYSQL und Wordpress konfiguriert.
 
-#### 3.3 wp-config.php
+#### 4.4.1 wp-config.php
 Dieses Script wird als konfigurationsgrundlage für die Installation von Worpress verwendet. Dieses config wird von Worpress bereitgestellt und man kann darin noch seine eigenen Variablen einfügen.
 
   `define( 'DB_NAME', 'wordpress' );
@@ -195,7 +214,7 @@ require_once ABSPATH . 'wp-settings.php';`
 
 Mit diesem Befhel werden eingeschlossene Datien von WordPress_Vars eingerichtet.
 
-#### 3.3 wordpress.conf
+#### 4.4.2 wordpress.conf
 Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host für den WordPress-Webserver konfiguriert.
 
   `<VirtualHost *:80>
@@ -214,7 +233,7 @@ Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host f�
 
 Mit diesesen Befehlen wird zuerst ein Hauptverzeichnis definiert und anschliessend konfiguriert. Bei der Konfiguration das folgen von symbolischen Links aktiviert und das Überschreiben von Konfigurationen in .htacces-Dateien erlaubt. Zusätzlich wird der Standartindex auf index.php gesetzt und der Zugriff auf alle Anfragen erlaubt. Anschliessend wird das Verzeichnis wp-content konfiguriert. Dabei wird das folgen von symbolischen Links erlaubt und der Zugriff auf alle Anfragen erlaubt.
 
-#### 3.3 MySQL_Setup.sql
+#### 4.4.3 MySQL_Setup.sql
 Mit diesem Script wird die WordPress Datenbank erstellt und eingerichtet. 
 
  `CREATE DATABASE wordpress;`
@@ -236,11 +255,11 @@ Dem eben erstellten Benutzer wordpress werden die Berechtigungen Select, Insert,
 Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
 
  
-## 3. Tests
+## 5. Tests
 Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
 Mängelklasse: 0 = mängelfrei; 1 = belangloser Mangel; 2 = leichter Mangel; 3 = schwerer Mangel; 4 = kritischer Mangel
 
-### 3.1 Testfall 1 
+### 5.1 Testfall 1 
    |ID / Bezeichnung | T-001 Security-Group prüfen |
    |----------|----------|
    | Beschreibung | Nach dem Durchlaufen der Scripts wird geprüft ob die Security-Group richtig erstellt wurde und die richtigen Konfigurationen besitzt |
@@ -256,7 +275,7 @@ Testdurchführung und Testergebnis
    | Mangelbeschrei-bung | Der Test wurde erfolgreich durchgeführt |
    | Bemerkungen | Die Security-Group wordpress-sec-group wurde aufgelistet und zeigt die richtige Konfiguration. Die Security-Groupe sollte nun dafür sor-gen, dass alle Instanzen die richtigen Zugriffe besitzen, aber nur ei-ner geringer Gefahr durch Zugriff von aussen ausgesetzt sind. |
 
-### 3.2 Testfall 2 
+### 5.2 Testfall 2 
    |ID / Bezeichnung | T-002 Schlüsselpaar prüfen |
    |----------|----------|
    | Beschreibung | Nach dem erfolgreichen Durchlaufen der Installationsscripts wird geprüft, ob ein neues Schlüsselpaar erstellt wurde. |
@@ -272,7 +291,7 @@ Testdurchführung und Testergebnis
    | Mangelbeschrei-bung | Der Test wurde erfolgreich durchgeführt. |
    | Bemerkungen | Das Schlüsselpaar aws-wordpress-cli wurde erstellt und wurde den Instancen zugeordnet. |
 
-### 3.3 Testfall 3 
+### 5.3 Testfall 3 
    |ID / Bezeichnung | T-003 Wordpress Installation prüfen |
    |----------|----------|
    | Beschreibung | Es wird geprüft ob Wordpress auf der Instance WordPress korrekt installiert, wurde. |
@@ -288,7 +307,7 @@ Testdurchführung und Testergebnis
    | Mangelbeschrei-bung | Der Test wurde erfolgreich durchgeführt. |
    | Bemerkungen | Die Startseite der Wordpress-Instance konnte im Browser geöffnet werden. Damit wurde steht der Webserver zurverfügung.  |
 
-### 3.4 Testfall 4 
+### 5.4 Testfall 4 
    |ID / Bezeichnung | T-004 Prüfen, ob SQL-Datenbank online ist |
    |----------|----------|
    | Beschreibung | Nach der Installation und Konfiguration der SQL-Datenbank wird geprüft, ob diese online ist. |
@@ -304,7 +323,7 @@ Testdurchführung und Testergebnis
    | Mangelbeschrei-bung | Die SQL-Datenbank war offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online. |
    | Bemerkungen | Die SQL-Datenbank ist online. Die Datenbank wurde somit korrekt aufgesetz und kann verwendet werden. |   
 
-### 3.5 Testfall 5 
+### 5.5 Testfall 5 
    |ID / Bezeichnung | T-005 SQL User Berechtigung prüfen |
    |----------|----------|
    | Beschreibung | Es wird geprüft ob der SQL User wordpress über die gewünschten Berechtigungen verfügt. |
@@ -320,18 +339,18 @@ Testdurchführung und Testergebnis
    | Mangelbeschrei-bung | Die SQL-Datenbank war offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online. |
    | Bemerkungen | Der User Wordpress besitzt die Berechtigung SELECT, INSERT, UP-DATE, DELETE, CREATE, DROP und ALTER  |  
 
-## 4. Reflexion
+## 6. Reflexion
 Im folgenden Kapitel werden wir unser Projekt reflektieren und Verbesserungsvorschläge darlegen.
 
-### 4.1 Bischofberger Leonie
+### 6.1 Bischofberger Leonie
 Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses Projekt bekammen, wollten wir zuerst das Projekt "Bild verkleinerung" umsetzen. Nach einigen Recherchen mussten wir aber feststellen, dass wir aktuell nicht über einen genug grossen Wissensstand verfügten um diese Projekt umzusetzen. Deshalb haben wir uns schlussendlich für dieses Projekt entschieden. Zu Beginn war ich auch bei diesem Projekt etwas überfordert, doch mti der Hilfe von Samuel Riedener fand ich schnell heraus wie wir dieses Projekt angehen mussten und wo wir uns Informationen beschaffen konnten. Danach hatten wir sehr schnell die erste Version unseres Scripts zur einrichtung des CMS in AWS. Diese Version hat auch sehr gut funktioniert und hat die gewünschten Instancen mit den richtigen konfigurationen erstellt. Leider haben wir uns dann ein bisschen auf unseren Lorbeeren ausgeruht und stellten erst später fest, dass wir unsere SQL-Datenbank auf einer zweiten Instance haben müssen. Daurch kam ich etwas in den Stress, da ich sehr viel Recherche tätigen musste um diese Änderung umzusetzen. Schlussendlich musste ich aber merken, dass diese zusätzliche Änderung grundsätzlich ganz simpel einführbar sit. Dafür dass das Thema AWs für uns alle neu war und wir auch noch nie in einem Projekt GitHub zur Dokumentation verwenden durften, haben wir unsere Projekt sehr gut umgesetz. Als Verbesserungspunkte für ein Weiteres Projekt würde ich neben Github noch ein Kanban System einsetzen, damit die verschiedenen Aufgaben des Projekts klar aufgelistet werden könne. Denn bei diesem Projekt war ich mir nicht immer sicher woran die anderen Teammitglieder arbeiten und somit war es Teils sehr schwer den anderen zu helfen oder den überblick zu behalten welche Aufgabne noch erledigt werden müssen. Mit einem Kanban System wäre diese Problem gelöst und es wäre durch wneige Klicks sichtbar welche Aufgaben noch offen sind und woran die anderen Teammitglieder arbeiten. Ebenfalls würde ich bei einem weiteren Projekt gleich bei Beginn Meetings festlegen an denen alle Teammitglieder teilnehmen und sich austauschen, welche Aufgaben wer übernimmt und wo man noch Hilfe benötigt.
 
-### 4.2 Davatz Ben
+### 6.2 Davatz Ben
 
-### 4.3 Riedener Samuel
+### 6.3 Riedener Samuel
 
-## 3. Quellen
-### 4.2 Internetquellen
+## 7. Quellen
+### 7.1 Internetquellen
 Für unser haben wir zur Recherche hauptächlich die offizielle AWs seite genutz um sicherzustellen dass die gefundenen Varianten auch in unserere Umgebung umsetzbar sind.
    |Quellen | Datum |
    |----------|----------|
@@ -342,7 +361,7 @@ Für unser haben wir zur Recherche hauptächlich die offizielle AWs seite genutz
    | https://docs.aws.amazon.com/de_de/managedservices/latest/appguide/ex-create-wp-stack.html | 09.12.2023 |
    | https://aws.amazon.com/de/solutions/retail/content-management-system/ | 09.12.2023 |
 
-### 4.2 Dokumentquellen
+### 7.2 Dokumentquellen
 Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer wieder DOkumente bekommen mit denen wir 
    |Quellen | Datum |
    |----------|----------|
