@@ -10,7 +10,7 @@ Datum:      09.12.2023
 -- Berechtigungen aktualisieren/aktivieren
 
 CREATE DATABASE wordpress;
-CREATE USER 'wordpress'@'%' IDENTIFIED BY 'Vz7,4*,4C3Y7';
+CREATE USER 'wordpress'@'%' IDENTIFIED BY 'p!&vvvn?GtgJ0cRs!gHd[7w@Z&@GMG>pETwzV$.1jw(Ej*^w2mt=*St0n$Hy]TW;';
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
   ON wordpress.*
   TO 'wordpress'@'%';
