@@ -26,21 +26,16 @@ define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'wordpress' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'Vz7,4*,4C3Y7' );
+define( 'DB_PASSWORD', 'p!&vvvn?GtgJ0cRs!gHd[7w@Z&@GMG>pETwzV$.1jw(Ej*^w2mt=*St0n$Hy]TW;' );
 
 /** Database hostname */
-define( 'DB_HOST', '%' );
+define( 'DB_HOST', 'localhost' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
-
-
-/** Direct Database Connection */
-mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
 
 /**#@+
  * Authentication unique keys and salts.
