@@ -5,37 +5,37 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 ## 1. Inhaltsverzeichnis
 
-1. [Zweck des Skripts und Git Repository](#1-tabelle-einfügen) 
+1. Zweck des Skripts und Git Repository 
 
-2. [Plannung](#2-bild-einfügen) 
+2. Plannung 
 
-3. [Voraussetzugen](#3-formatierungen) 
+3. Voraussetzugen 
 
-4. [Umsetzung](#4-weitere-funktionen) 
-   4.1 [Script installWordPress.sh erklärt](#41-unterkapitel)
-   4.2 [Script initialWordPress.txt erklärt](#41-unterkapitel)
-   4.3 [Script initialMySQL.txt erklärt](#41-unterkapitel)
-   4.4 [Configs](#41-unterkapitel) 
-		4.4.1 [wp-config.php](#41-unterkapitel)
-   		4.4.2 [wordpress.conf](#41-unterkapitel)
-   		4.4.3 [MySQL_Setup.sql](#41-unterkapitel)
-   		4.4.4 [Configs](#41-unterkapitel) 
+4. Umsetzung \
+   4.1 Script installWordPress.sh erklärt \
+   4.2 Script initialWordPress.txt erklärt \
+   4.3 Script initialMySQL.txt erklärt \
+   4.4 Configs  
+	4.4.1 wp-config.php \
+   	4.4.2 wordpress.conf \
+   	4.4.3 MySQL_Setup.sql \
+   	4.4.4 Configs 
    
-5. [Tests](#4-weitere-funktionen) \
-   5.1 [Testfall 1 ](#41-unterkapitel)
-   5.2 [Testfall 2 ](#41-unterkapitel)
-   5.3 [Testfall 3 ](#41-unterkapitel)
-   5.4 [Testfall 4 ](#41-unterkapitel)
-   5.5 [Testfall 5 ](#41-unterkapitel)
+5. Tests \
+   5.1 Testfall 1 \
+   5.2 Testfall \
+   5.3 Testfall 3 \
+   5.4 Testfall 4 \
+   5.5 Testfall 5  
    
-6. [Reflexion](#4-weitere-funktionen) \
-   6.1 [Bischofberger Leonie](#41-unterkapitel)
-   6.2 [Riedener Samuel](#41-unterkapitel)
-   6.3 [Davatz Ben](#41-unterkapitel)
+6. Reflexion \
+   6.1 Bischofberger Leonie \
+   6.2 Riedener Samuel \
+   6.3 Davatz Ben 
    
-7. [Quellen](#4-weitere-funktionen) \
-   7.1 [Internetquellen](#41-unterkapitel) 
-   7.2 [Dokumentquellen](#41-unterkapitel) 
+7. Quellen \
+   7.1 Internetquellen  \
+   7.2 Dokumentquellen 
 
 ## 1. Zweck des Skripts und Git Repository
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
