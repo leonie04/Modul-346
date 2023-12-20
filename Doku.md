@@ -38,7 +38,6 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
    7.1 [Internetquellen](#71-internetquellen) \
    7.2 [Dokumentquellen](#72-dokumentquellen)
     
-=======
 
 ## 1. Zweck des Skripts und Git Repository
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
