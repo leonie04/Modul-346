@@ -9,5 +9,6 @@ sudo apt-get -y install mysql-server
                  
 git clone https://github.com/leonie04/Modul-346
 sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql
+sudo cp Modul-346/Configs/mysqld.cnf /etc/mysql/mysql.conf.d/
 sudo service mysql start
 
