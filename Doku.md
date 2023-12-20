@@ -6,51 +6,48 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 ## 1. Inhaltsverzeichnis
 
 ## 1. Inhaltsverzeichnis
+1. [Zweck des Skripts und Git Repository](#1-zweck-des-skripts-und-git-repository) 
 
-### Inhaltsverzeichnis
-1. [Tabelle einfügen](#1-tabelle-einfügen) \
-   1.1 [Unterkapitel](#11-unterkapitel)
+2. [Planung](#2-planung) 
 
-2. [Bild einfügen](#2-bild-einfügen) \
-   2.1 [Unterkapitel](#21-unterkapitel)
-
-
-1. Zweck des Skripts und Git Repository 
-
-2. Plannung 
-
-3. Voraussetzugen 
-
-4. Umsetzung \
-   4.1 Script installWordPress.sh erklärt \
-   4.2 Script initialWordPress.txt erklärt \
-   4.3 Script initialMySQL.txt erklärt \
-   4.4 Configs  
-	4.4.1 wp-config.php \
-   	4.4.2 wordpress.conf \
-   	4.4.3 MySQL_Setup.sql \
-   	4.4.4 Configs 
+3. [Voraussetzugen](#3-voraussetzugen)
    
-5. Tests \
-   5.1 Testfall 1 \
-   5.2 Testfall \
-   5.3 Testfall 3 \
-   5.4 Testfall 4 \
-   5.5 Testfall 5  
-   
+4. [Umsetzung](#4-umsetzung) \
+   4.1 [Script installWordPress.sh erklärt](#41-script-installwordpress.sh-erklärt) \
+   4.2 [Script initialWordPress.txt erklärt](#42-script-initialwordpress.txt-erklärt) \
+   4.3 [Script initialMySQL.txt erklärt](#43-script-initialmysql.txt-erklärt) \
+   4.4 [Configs](#44-configs) \
+	4.4.1 [wp-config.php](#441-wp-config.php) \
+   	4.4.2 [wordpress.conf](#442-wordpress.conf) \
+   	4.4.3 [MySQL_Setup.sql](#443-mysql_setup.sql) \
+   	4.4.4 [Configs](#443-configs)    
+    
+5. [Tests](#5-tests) \
+   5.1 [Testfall 1](#51-testfall-1) \
+   5.2 [Testfall 2](#52-testfall-2)  \
+   5.3 [Testfall 3](#53-testfall-3) \
+   5.4 [Testfall 4](#54-testfall-4) \
+   5.5 [Testfall 5](#55-testfall-5)
+
+6. [Reflexion](#6-Reflexion) \
+   6.1 [Bischofberger Leonie](#61-bischofberger-leonie) \
+   6.2 [Riedener Samuel](#62-rieder-samuel) \
+   6.3 [Davatz Ben](#63-davatz-ben)         
+
+7. [Quellen](#7-quellen) \
+   7.1 [Internetquellen](#71-internetquellen) \
+   7.2 [Dokumentquellen](#72-dokumentquellen)
+    
 6. Reflexion \
    6.1 Bischofberger Leonie \
    6.2 Riedener Samuel \
    6.3 Davatz Ben 
-   
-7. Quellen \
-   7.1 Internetquellen  \
-   7.2 Dokumentquellen 
+
 
 ## 1. Zweck des Skripts und Git Repository
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
 
-## 2. Plannung
+## 2. Planung
 Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.3023 fertig haben, damit wir anschliessend noch genügend Zeit für die Dokumentation und alfällige Fehlerbehebung haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das dokumentieren aufteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
 
    | Tätigkeit | Person | Zeitrahmen |
