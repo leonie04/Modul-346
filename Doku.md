@@ -41,7 +41,7 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
 
 ## 2. Plannung
-Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.3023 fertig haben, damit wir anschliessend noch genügend Zeit für die DOkumentation und alfällige Fehlerbehebung haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das Dokumentieren aufteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
+Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.3023 fertig haben, damit wir anschliessend noch genügend Zeit für die Dokumentation und alfällige Fehlerbehebung haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das dokumentieren aufteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
 
    | Tätigkeit | Person | Zeitrahmen |
    |----------|----------|----------|
@@ -59,18 +59,17 @@ Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Ze
    | Abschluss | Bischofberger Leonie, Riedener Samuel, Davatz Ben | 17. - 19.12.2023 |
    
 ## 3. Voraussetzugen
-Das initialWordPress.sh skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen initialmysql.txt und initialWordPress.txt müssen im gleichen Ordner wie das initialWordPress.sh sein.
+Das "initialWordPress.sh" Skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen "initialmysql.txt" und "initialWordPress.txt" müssen im gleichen Ordner wie das "initialWordPress.sh" sein.
 
 ## 4. Umsetzung
-Um Wordpress in AWs zu installieren haben wir verschiedene Script erstellt. Diese werden wir in diesem Kapitel erläutern.
-### 4.1 Script installWordPress.sh erklärt
-Mit dem installWordPress.sh script werden zwei Instancen mit den dazugehörigen Schlüsselpaaren udn Sicherehitgruppen erstellt.
+Um Wordpress in AWs zu installieren haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
 
- 
+### 4.1 Script installWordPress.sh erklärt
+Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörigen Schlüsselpaaren und Sicherheitsgruppen erstellt.
 
  `aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem`
  
-Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Der private Schlüssel wird exportiert udn in die Datei: ~/.ssh/aws-wordpress-cli.pem geschrieben.
+Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Anschliessend wird der private Schlüssel exportiert und in die Datei: "~/.ssh/aws-wordpress-cli.pem" geschrieben.
 
  `aws ec2 create-security-group --group-name wordpress-sec-group --description "EC2-WordPress-SG"
 aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 80 --cidr 0.0.0.0/0
@@ -82,24 +81,23 @@ Mit diesen Befehlen wird eine Sicherheitgruppe namens "wordpress-sec-group" und 
  `aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialMySQL.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MySQL}]' --no-paginate
 aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialWordPress.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=WordPress}]' --no-paginate`
 
-Mit diesen Befehlen werden zwei Instancen mit den Namen "MySQL" und "WordPress" gestartet. Den Instanzen werden die zuBeginn erstellte Sicherheitgruppe und Schlüsselpaar mitgegeben. Zusätzlich wir ein Instanzprofil mit dem Namen "LabInstanceProfile" hinzugefügt.
+Mit diesen Befehlen werden zwei Instanzen mit den Namen "MySQL" und "WordPress" gestartet. Den Instanzen werden, die zu Beginn erstellte Sicherheitgruppe und Schlüsselpaar, mitgegeben. Zusätzlich wir ein Instanzprofil mit dem Namen "LabInstanceProfile" hinzugefügt.
 
   `chmod 600 ~/.ssh/aws-wordpress-cli.pem`
  
-Dieser Befehl so dass nur der Besitzer die Datei lesen und bearbeiten kann.
+Dieser Befehl sorgt dafür, dass nur der Besitzer die Datei "~/.ssh/aws-wordpress-cli.pem" lesen und bearbeiten kann.
 
   `public_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=mysql" --query "Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output json | jq -r '.[][].PublicIP')`
 
-Mit deisem Befehl wird die Ip-Adresse der MYSQL -Instanz abegrufen und in der Variable "public_ip" abgespeichert.
+Mit diesem Befehl wird die Ip-Adresse der MYSQL-Instanz abegrufen und in der Variable "public_ip" abgespeichert.
 
   `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 22 --cidr $public_ip/32`
 
-Mit diesem Befehl wird die Sicherheitsgruppe wordpress-sec-group aktualisert und der SSH Zugriff über die IP-Adresse der MySQL-Instanz erhlaubt.
+Mit diesem Befehl wird die Sicherheitsgruppe "wordpress-sec-group" aktualisert und der SSH Zugriff über die IP-Adresse der MySQL-Instanz erhlaubt.
 
 
 ### 4.2 Script initialWordPress.txt erklärt
-Mit dem initialWordPress.txt Script wir auf der Instance WordPress installiert und konfiguriert.
-
+Mit dem initialWordPress.txt Script wird auf der Instanz WordPress installiert und konfiguriert.
 
   `sudo apt-get update
 sudo apt-get -y install apache2 \
@@ -116,12 +114,12 @@ sudo apt-get -y install apache2 \
                  php-xml \
                  php-zip`
 
-Mit diesem Befehl die Instance geupdatet. Anschliessend werden Apache2, Ghostsscript, und PHP installiert.
+Mit diesem Befehl wird die Instanz geupdatet. Anschliessend werden Apache2, Ghostsscript, und PHP installiert.
 
   `sudo mkdir -p /srv/www
 sudo chown www-data: /srv/www`
 
-Das Verzeichnis /srv/www erstellen und dem Webserver Schreibzugriff gewähren.
+Das Verzeichnis "/srv/www" wird erstellt und dem Webserver Schreibzugriff gewährt.
 
   `curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www`
 
@@ -144,7 +142,7 @@ Mit diesem Befehl wird die Standartseite in Apache deaktivieren und die Konfigur
 
   `sudo cp Modul-346/Configs/wp-config.php /srv/www/wordpress/`
 
-Zum Schluss wird die Wordpress konfigurationsdatei in den Worpress Installationsorder kopiert.
+Zum Schluss wird die Wordpress-Konfigurationsdatei in den Worpress Installationsorder kopiert.
 
 
 ### 4.3 Script initialMySQL.txt erklärt
@@ -153,23 +151,23 @@ Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfigu
   `sudo apt-get update
 sudo apt-get -y install mysql-server` 
 
-Mit diesen Befehlen wird zuerst die Instanz geupdatet und anschliessend den mysql-server zu installieren.
+Mit diesen Befehlen wird zuerst die Instanz geupdatet und anschliessend der mysql-server installiert.
                  
   `git clone https://github.com/leonie04/Modul-346
   sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql` 
 
-Da Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird die Date MySQL_Setup.sql ausgeführt.
+Das Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird die Datei "MySQL_Setup.sql" ausgeführt.
 
   `sudo service mysql start`
 
-Schlussendlich wird der SQL Server mit dem Namen mysql gestartet.
+Schlussendlich wird der SQL Server mit dem Namen "mysql" gestartet.
 
 
 ### 4.4 Configs
-Configs werden MYSQL und Wordpress konfiguriert.
+Mit den Configs werden MYSQL und Wordpress konfiguriert.
 
 #### 4.4.1 wp-config.php
-Dieses Script wird als konfigurationsgrundlage für die Installation von Worpress verwendet. Dieses config wird von Worpress bereitgestellt und man kann darin noch seine eigenen Variablen einfügen.
+Dieses Script wird als konfigurationsgrundlage für die Installation von Worpress verwendet. Dieses Config wird von Worpress bereitgestellt und man kann darin noch seine benötigten eigenen Variablen einfügen.
 
   `define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'wordpress' );
@@ -183,7 +181,6 @@ Mit diesen Befehlen werden die folgednen Elemente definiert: Datenbankname, Date
   `mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);`
 
 Mit diesem Befehl wird die Datenbank verbunden. Dazu werden die oben definierten Elemente verwendet.
-
 
   `define('AUTH_KEY',         '4^*;gYe@h>iOHX/Q8YwJ[F{h)Wq@!n%76uWqcjjUrH-+udb2B[OrB*8$(>M}78II');`
   `define('SECURE_AUTH_KEY',  '5SI@(M+l]}GU|u3*m1;zWV5Cw3y#g<H3T2s%-ydT_|Xt3!1m {k)D&mLU+ G/FOH');`
@@ -212,7 +209,7 @@ Mit diesem Befehl kann der WordPress-Debugging-Modus aktiviert werden. Aktuell i
 }
 require_once ABSPATH . 'wp-settings.php';`
 
-Mit diesem Befhel werden eingeschlossene Datien von WordPress_Vars eingerichtet.
+Mit diesem Befehl werden eingeschlossene Dateien von WordPress_Vars eingerichtet.
 
 #### 4.4.2 wordpress.conf
 Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host für den WordPress-Webserver konfiguriert.
@@ -231,24 +228,24 @@ Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host f�
     </Directory>
 </VirtualHost>`
 
-Mit diesesen Befehlen wird zuerst ein Hauptverzeichnis definiert und anschliessend konfiguriert. Bei der Konfiguration das folgen von symbolischen Links aktiviert und das Überschreiben von Konfigurationen in .htacces-Dateien erlaubt. Zusätzlich wird der Standartindex auf index.php gesetzt und der Zugriff auf alle Anfragen erlaubt. Anschliessend wird das Verzeichnis wp-content konfiguriert. Dabei wird das folgen von symbolischen Links erlaubt und der Zugriff auf alle Anfragen erlaubt.
+Mit diesen Befehlen wird zuerst ein Hauptverzeichnis definiert und anschliessend konfiguriert. Bei der Konfiguration wird das folgen von symbolischen Links aktiviert und das Überschreiben von Konfigurationen in .htacces-Dateien erlaubt. Zusätzlich wird der Standartindex auf "index.php" gesetzt und der Zugriff auf alle Anfragen erlaubt. Anschliessend wird das Verzeichnis "wp-content" konfiguriert. Dabei wird das folgen von symbolischen Links und der Zugriff auf alle Anfragen erlaubt.
 
 #### 4.4.3 MySQL_Setup.sql
 Mit diesem Script wird die WordPress Datenbank erstellt und eingerichtet. 
 
  `CREATE DATABASE wordpress;`
 
- Mit diesem Befehl wird die Wordpress Datenbank mit dem Namen wordpress erstellt.
+ Mit diesem Befehl wird die Wordpress Datenbank mit dem Namen "wordpress" erstellt.
  
  `CREATE USER 'wordpress'@'%' IDENTIFIED BY 'Vz7,4*,4C3Y7';`
 
- Mit diesem Befehl wird der Benutzer wordpress erstellt und so konfiguriert, dass er von überall Zugreifen kann.
+ Mit diesem Befehl wird der Benutzer "wordpress" erstellt und so konfiguriert, dass er von überall zugreifen kann.
  
  `GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
   ON wordpress.*
   TO 'wordpress'@'%';`
 
-Dem eben erstellten Benutzer wordpress werden die Berechtigungen Select, Insert, Update, Delete, Create, Drop und Alter erteilt.
+Dem eben erstellten Benutzer "wordpress" werden die Berechtigungen Select, Insert, Update, Delete, Create, Drop und Alter erteilt.
   
  `FLUSH PRIVILEGES;`
  
@@ -256,63 +253,63 @@ Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
 
  
 ## 5. Tests
-Um sicherzustellen das nach derm ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
+Um sicherzustellen das nach dem Ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
 Mängelklasse: 0 = mängelfrei; 1 = belangloser Mangel; 2 = leichter Mangel; 3 = schwerer Mangel; 4 = kritischer Mangel
 
 ### 5.1 Testfall 1 
    |ID / Bezeichnung | T-001 Security-Group prüfen |
    |----------|----------|
    | Beschreibung | Nach dem Durchlaufen der Scripts wird geprüft ob die Security-Group richtig erstellt wurde und die richtigen Konfigurationen besitzt |
-   | Testvoraussetzung | Script installWorPress.sh wurde ausgeführt |
-   | Testschritte | Auf dem Linux Host wird der folgende Befehl ausgeführt: aws ec2 describe-security-groups \ --group-name word-press-sec-group |
-   | Erwartetes Ergebnis | Die Security-Group wordpress-sec-group wird aufgelistet und zeigt die richtige konfiguration. |
+   | Testvoraussetzung | Script "installWorPress.sh" wurde ausgeführt |
+   | Testschritte | Auf dem Linux Host wird der folgende Befehl ausgeführt: *aws ec2 describe-security-groups \ --group-name word-press-sec-group* |
+   | Erwartetes Ergebnis | Die Security-Group "wordpress-sec-group" wird aufgelistet und zeigt die richtige Konfiguration. |
 
 Testdurchführung und Testergebnis
    | Testdatum | 16.12.2023 |
    |----------|----------|
    | Tester | Bischofberger Leonie |
    | Mängelklasse | 0 |
-   | Mangelbeschrei-bung | Der Test wurde erfolgreich durchgeführt |
-   | Bemerkungen | Die Security-Group wordpress-sec-group wurde aufgelistet und zeigt die richtige Konfiguration. Die Security-Groupe sollte nun dafür sor-gen, dass alle Instanzen die richtigen Zugriffe besitzen, aber nur ei-ner geringer Gefahr durch Zugriff von aussen ausgesetzt sind. |
+   | Mangelbeschreibung | Der Test wurde erfolgreich durchgeführt |
+   | Bemerkungen | Die Security-Group "wordpress-sec-group" wurde aufgelistet und zeigt die richtige Konfiguration. Die Security-Group sollte nun dafür sorgen, dass alle Instanzen die richtigen Zugriffe besitzen, aber nur einer geringen Gefahr durch Zugriff von Böswilligen ausgesetzt sind. |
 
 ### 5.2 Testfall 2 
    |ID / Bezeichnung | T-002 Schlüsselpaar prüfen |
    |----------|----------|
    | Beschreibung | Nach dem erfolgreichen Durchlaufen der Installationsscripts wird geprüft, ob ein neues Schlüsselpaar erstellt wurde. |
-   | Testvoraussetzung | Script installWorPress.sh wurde ausgeführt. |
-   | Testschritte | AWS-Konsole starten und zum Bereich Netzwerk & Sicherheit gehen. Dort die Kategorie Schlüsselpaare auswählen. Nun in der Liste prüfen, ob ein Schlüsselpaar namens aws-wordpress-cli existiert. |
-   | Erwartetes Ergebnis | Das Schlüsselpaar aws-wordpress-cli wurde erstellt.  |
+   | Testvoraussetzung | Script "installWorPress.sh" wurde ausgeführt. |
+   | Testschritte | AWS-Konsole starten und zum Bereich Netzwerk & Sicherheit gehen. Dort die Kategorie Schlüsselpaare auswählen. Nun in der Liste prüfen, ob ein Schlüsselpaar namens "aws-wordpress-cli" existiert. |
+   | Erwartetes Ergebnis | Das Schlüsselpaar "aws-wordpress-cli" wurde erstellt.  |
 
 Testdurchführung und Testergebnis
    | Testdatum | 16.12.2023 |
    |----------|----------|
    | Tester | Bischofberger Leonie |
    | Mängelklasse | 0 |
-   | Mangelbeschrei-bung | Der Test wurde erfolgreich durchgeführt. |
-   | Bemerkungen | Das Schlüsselpaar aws-wordpress-cli wurde erstellt und wurde den Instancen zugeordnet. |
+   | Mangelbeschreibung | Der Test wurde erfolgreich durchgeführt. |
+   | Bemerkungen | Das Schlüsselpaar "aws-wordpress-cli" wurde erstellt und wurde den Instanzen zugeordnet. |
 
 ### 5.3 Testfall 3 
    |ID / Bezeichnung | T-003 Wordpress Installation prüfen |
    |----------|----------|
-   | Beschreibung | Es wird geprüft ob Wordpress auf der Instance WordPress korrekt installiert, wurde. |
-   | Testvoraussetzung | Die beiden Scripts installWordPress.sh und initialWorPress.txt wur-den ausgeführt. |
+   | Beschreibung | Es wird geprüft ob Wordpress auf der Instance WordPress korrekt installiert wurde. |
+   | Testvoraussetzung | Die beiden Scripts "installWordPress.sh" und "initialWorPress.txt" wurden ausgeführt. |
    | Testschritte | Öffentliche Adresse des Wordpress-Instance im Browser suchen. |
-   | Erwartetes Ergebnis | Es wird die konfigurierte Startseite der Wordpress-Instance gezeigt |
+   | Erwartetes Ergebnis | Es wird die konfigurierte Startseite der Wordpress-Instanz angezeigt |
 
 Testdurchführung und Testergebnis
    | Testdatum | 16.12.2023 |
    |----------|----------|
    | Tester | Riedener Samuel |
    | Mängelklasse | 0 |
-   | Mangelbeschrei-bung | Der Test wurde erfolgreich durchgeführt. |
-   | Bemerkungen | Die Startseite der Wordpress-Instance konnte im Browser geöffnet werden. Damit wurde steht der Webserver zurverfügung.  |
+   | Mangelbeschreibung | Der Test wurde erfolgreich durchgeführt. |
+   | Bemerkungen | Die Startseite der Wordpress-Instanz konnte im Browser geöffnet werden. Damit steht der Webserver nun zur Verfügung und kann verwendet werden.  |
 
 ### 5.4 Testfall 4 
-   |ID / Bezeichnung | T-004 Prüfen, ob SQL-Datenbank online ist |
+   |ID / Bezeichnung | T-004 Prüfen ob SQL-Datenbank online ist |
    |----------|----------|
    | Beschreibung | Nach der Installation und Konfiguration der SQL-Datenbank wird geprüft, ob diese online ist. |
-   | Testvoraussetzung | Die beiden Scripts installWordPress.sh und initialMySQL.txt wurden ausgeführt. |
-   | Testschritte | Die MySQL Instance starten und folgenden Befehl ausführen: systemctl status mysql |
+   | Testvoraussetzung | Die beiden Scripts "installWordPress.sh" und "initialMySQL.txt" wurden ausgeführt. |
+   | Testschritte | Die MySQL Instanz starten und folgenden Befehl ausführen: *systemctl status mysql* |
    | Erwartetes Ergebnis | Die SQL-Datenbank ist online. |
 
 Testdurchführung und Testergebnis
@@ -320,23 +317,23 @@ Testdurchführung und Testergebnis
    |----------|----------|
    | Tester | Riedener Samuel |
    | Mängelklasse | 1 |
-   | Mangelbeschrei-bung | Die SQL-Datenbank war offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online. |
+   | Mangelbeschreibung | Die SQL-Datenbank wurde versehentlich vor dem Test gestoppt. Deshalb war der Server während dem Test offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online und Verfügbar. |
    | Bemerkungen | Die SQL-Datenbank ist online. Die Datenbank wurde somit korrekt aufgesetz und kann verwendet werden. |   
 
 ### 5.5 Testfall 5 
    |ID / Bezeichnung | T-005 SQL User Berechtigung prüfen |
    |----------|----------|
-   | Beschreibung | Es wird geprüft ob der SQL User wordpress über die gewünschten Berechtigungen verfügt. |
-   | Testvoraussetzung | Die beiden Scripts installWordPress.sh und initialMySQL.txt wurden ausgeführt. |
-   | Testschritte | Die MySQL Instance starten und folgenden Befehl ausführen: USE your_database_name; Shwo Grants FOR 'wordpress'@'%' |
-   | Erwartetes Ergebnis | Der User Wordpress besitzt die Berechtigung SELECT, INSERT, UP-DATE, DELETE, CREATE, DROP und ALTER |
+   | Beschreibung | Es wird geprüft ob der SQL User "wordpress" über die gewünschten Berechtigungen verfügt. |
+   | Testvoraussetzung | Die beiden Scripts "installWordPress.sh" und "initialMySQL.txt" wurden ausgeführt. |
+   | Testschritte | Die MySQL Instanz starten und folgenden Befehl ausführen: *USE your_database_name; Shwo Grants FOR 'wordpress'@'%'* |
+   | Erwartetes Ergebnis | Der User "Wordpress" besitzt die Berechtigung "SELECT, INSERT, UP-DATE, DELETE, CREATE, DROP und ALTER" |
 
 Testdurchführung und Testergebnis
    | Testdatum | 16.12.2023 |
    |----------|----------|
    | Tester | Davatz Ben |
    | Mängelklasse | 0 |
-   | Mangelbeschrei-bung | Die SQL-Datenbank war offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online. |
+   | Mangelbeschreibung | Es wurde ausgegeben, dass der User "wordpress" über die gewünschten Berechtigungen verfüggt. |
    | Bemerkungen | Der User Wordpress besitzt die Berechtigung SELECT, INSERT, UP-DATE, DELETE, CREATE, DROP und ALTER  |  
 
 ## 6. Reflexion
@@ -351,7 +348,7 @@ Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses 
 
 ## 7. Quellen
 ### 7.1 Internetquellen
-Für unser haben wir zur Recherche hauptächlich die offizielle AWs seite genutz um sicherzustellen dass die gefundenen Varianten auch in unserere Umgebung umsetzbar sind.
+Für unser Projekt haben wir zur Recherche hauptächlich die offizielle AWs-Webseite genutz. Um sicherzustellen, dass die gefundenen Varianten auch in unserere Umgebung umsetzbar sind.
    |Quellen | Datum |
    |----------|----------|
    | https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/ | 17.12.2023 |
@@ -362,7 +359,7 @@ Für unser haben wir zur Recherche hauptächlich die offizielle AWs seite genutz
    | https://aws.amazon.com/de/solutions/retail/content-management-system/ | 09.12.2023 |
 
 ### 7.2 Dokumentquellen
-Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer wieder DOkumente bekommen mit denen wir 
+Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer wieder Dokumente bekommen denen wir ebenfalls Informationen zur Umsetzung unseres Projekts entnehmen konnten.
    |Quellen | Datum |
    |----------|----------|
    | 346-05-AA-Vm-mit-Apache-auf-Cloud.pdf | 17.12.2023 |
