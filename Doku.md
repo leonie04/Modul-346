@@ -31,10 +31,11 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 6. [Reflexion](#6-Reflexion) \
    6.1 [Bischofberger Leonie](#61-bischofberger-leonie) \
-   6.2 [Riedener Samuel](#62-rieder-samuel) \
-   6.3 [Davatz Ben](#63-davatz-ben)
+   6.2 [Davatz Ben](#63-davatz-ben) \
+   6.3 [Riedener Samuel](#62-riedener-samuel)
+    
 
-7. [Quellen](#7-quellen) \
+8. [Quellen](#7-quellen) \
    7.1 [Internetquellen](#71-internetquellen) \
    7.2 [Dokumentquellen](#72-dokumentquellen)
     
