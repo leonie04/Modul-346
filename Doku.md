@@ -254,6 +254,7 @@ Dem eben erstellten Benutzer "wordpress" werden die Berechtigungen Select, Inser
  
 Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
 
+#### 4.4.4 MySQLd
  
 ## 5. Tests
 Um sicherzustellen das nach dem Ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
