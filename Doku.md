@@ -5,21 +5,21 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 ## 1. Inhaltsverzeichnis
 
-1. [Zweck des Skripts und Git Repository](#1-tabelle-einfügen) \
+1. [Zweck des Skripts und Git Repository](#1-tabelle-einfügen) 
 
-2. [Plannung](#2-bild-einfügen) \
+2. [Plannung](#2-bild-einfügen) 
 
-3. [Voraussetzugen](#3-formatierungen) \
+3. [Voraussetzugen](#3-formatierungen) 
 
-4. [Umsetzung](#4-weitere-funktionen) \
+4. [Umsetzung](#4-weitere-funktionen) 
    4.1 [Script installWordPress.sh erklärt](#41-unterkapitel)
    4.2 [Script initialWordPress.txt erklärt](#41-unterkapitel)
    4.3 [Script initialMySQL.txt erklärt](#41-unterkapitel)
    4.4 [Configs](#41-unterkapitel) 
-	4.4.1 [wp-config.php](#41-unterkapitel)
-   	4.4.2 [wordpress.conf](#41-unterkapitel)
-   	4.4.3 [MySQL_Setup.sql](#41-unterkapitel)
-   	4.4.4 [Configs](#41-unterkapitel)
+		4.4.1 [wp-config.php](#41-unterkapitel)
+   		4.4.2 [wordpress.conf](#41-unterkapitel)
+   		4.4.3 [MySQL_Setup.sql](#41-unterkapitel)
+   		4.4.4 [Configs](#41-unterkapitel) 
    
 5. [Tests](#4-weitere-funktionen) \
    5.1 [Testfall 1 ](#41-unterkapitel)
@@ -67,7 +67,7 @@ Um Wordpress in AWs zu installieren haben wir verschiedene Scripts erstellt. Die
 ### 4.1 Script installWordPress.sh erklärt
 Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörigen Schlüsselpaaren und Sicherheitsgruppen erstellt.
 
- `aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem`
+`aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem`
  
 Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Anschliessend wird der private Schlüssel exportiert und in die Datei: "~/.ssh/aws-wordpress-cli.pem" geschrieben.
 
@@ -182,14 +182,14 @@ Mit diesen Befehlen werden die folgednen Elemente definiert: Datenbankname, Date
 
 Mit diesem Befehl wird die Datenbank verbunden. Dazu werden die oben definierten Elemente verwendet.
 
-  `define('AUTH_KEY',         '4^*;gYe@h>iOHX/Q8YwJ[F{h)Wq@!n%76uWqcjjUrH-+udb2B[OrB*8$(>M}78II');`
-  `define('SECURE_AUTH_KEY',  '5SI@(M+l]}GU|u3*m1;zWV5Cw3y#g<H3T2s%-ydT_|Xt3!1m {k)D&mLU+ G/FOH');`
-  `define('LOGGED_IN_KEY',    'Z%-oXcX2`TDK}xV.DOq]^`41juCRi4tzA}^#+OvllHl4#p|X)/ u-~!K$}O}sVyW');`
-  `define('NONCE_KEY',        '^f}0|qU4+%-%`dA2>%^HWMBUeOVWyR>fQ9Om-b0>kin)mHl7SDLIm7em|aaAc9[Z');`
-  `define('AUTH_SALT',        'jSewMFUv{5q`|/.+1@upg5GAmt;-.~N0wO$${Yp{/)M%_iH_.LGg>v|Mj2&Ii>EQ');`
-  `define('SECURE_AUTH_SALT', '@]1~{mpNVaMm{0p!qA4V8Q!%2RXx:#>J6+u;2psy~4X-:4s;dxrte7j<UUYu.WwL');`
-  `define('LOGGED_IN_SALT',   'iyc+jAF5(X95FkYqg{|6>T7%kQ=;3LD>k!1Gv[HE!>)Cdk%|P>w)E/wg=4G+(<d/');`
-  `define('NONCE_SALT',       'T4fU0<WU(289+6DpqhQT+!=6oTo<f{K;x tOE`0@z#2[jc1~#-RoN::5-(+w?Cr|');`
+  ```define('AUTH_KEY',         '4^*;gYe@h>iOHX/Q8YwJ[F{h)Wq@!n%76uWqcjjUrH-+udb2B[OrB*8$(>M}78II');```
+  ```define('SECURE_AUTH_KEY',  '5SI@(M+l]}GU|u3*m1;zWV5Cw3y#g<H3T2s%-ydT_|Xt3!1m {k)D&mLU+ G/FOH');```
+  ```define('LOGGED_IN_KEY',    'Z%-oXcX2`TDK}xV.DOq]^`41juCRi4tzA}^#+OvllHl4#p|X)/ u-~!K$}O}sVyW');```
+  ```define('NONCE_KEY',        '^f}0|qU4+%-%`dA2>%^HWMBUeOVWyR>fQ9Om-b0>kin)mHl7SDLIm7em|aaAc9[Z');```
+  ```define('AUTH_SALT',        'jSewMFUv{5q`|/.+1@upg5GAmt;-.~N0wO$${Yp{/)M%_iH_.LGg>v|Mj2&Ii>EQ');```
+  ```define('SECURE_AUTH_SALT', '@]1~{mpNVaMm{0p!qA4V8Q!%2RXx:#>J6+u;2psy~4X-:4s;dxrte7j<UUYu.WwL');```
+  ```define('LOGGED_IN_SALT',   'iyc+jAF5(X95FkYqg{|6>T7%kQ=;3LD>k!1Gv[HE!>)Cdk%|P>w)E/wg=4G+(<d/');```
+  ```define('NONCE_SALT',       'T4fU0<WU(289+6DpqhQT+!=6oTo<f{K;x tOE`0@z#2[jc1~#-RoN::5-(+w?Cr|');```
 
 Mit diesen Befehlen werden einzigartige Schlüssel für die Authentifizierung definiert.
 
