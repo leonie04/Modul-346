@@ -3,24 +3,23 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 
 
-## 1. Inhaltsverzeichnis
 
 ## 1. Inhaltsverzeichnis
-1. [Zweck des Skripts und Git Repository](#1-zweck-des-skripts-und-git-repository) 
+1. [Zweck des Skripts und Git Repository](#1-zweck-des-skripts-und-git-repository)
 
-2. [Planung](#2-planung) 
+2. [Planung](#2-planung)
 
 3. [Voraussetzugen](#3-voraussetzugen)
    
 4. [Umsetzung](#4-umsetzung) \
-   4.1 [Script installWordPress.sh erklärt](#41-script-installwordpress.sh-erklärt) \
-   4.2 [Script initialWordPress.txt erklärt](#42-script-initialwordpress.txt-erklärt) \
-   4.3 [Script initialMySQL.txt erklärt](#43-script-initialmysql.txt-erklärt) \
+   4.1 [Script installWordPress erklärt](#41-script-installwordpress-erklärt) \
+   4.2 [Script initialWordPress erklärt](#42-script-initialwordpress-erklärt) \
+   4.3 [Script initialMySQL erklärt](#43-script-initialmysql-erklärt) \
    4.4 [Configs](#44-configs) \
-	4.4.1 [wp-config.php](#441-wp-config.php) \
-   	4.4.2 [wordpress.conf](#442-wordpress.conf) \
-   	4.4.3 [MySQL_Setup.sql](#443-mysql_setup.sql) \
-   	4.4.4 [Configs](#443-configs)    
+	4.4.1 [wp-config](#441-wp-config) \
+   	4.4.2 [wordpress](#442-wordpress) \
+   	4.4.3 [MySQL_Setup](#443-mysql_setup) \
+   	4.4.4 [Configs](#443-configs)
     
 5. [Tests](#5-tests) \
    5.1 [Testfall 1](#51-testfall-1) \
@@ -31,13 +30,15 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 6. [Reflexion](#6-Reflexion) \
    6.1 [Bischofberger Leonie](#61-bischofberger-leonie) \
-   6.2 [Riedener Samuel](#62-rieder-samuel) \
-   6.3 [Davatz Ben](#63-davatz-ben)         
+   6.2 [Davatz Ben](#62-davatz-ben) \
+   6.3 [Riedener Samuel](#63-riedener-samuel)
+    
 
-7. [Quellen](#7-quellen) \
+8. [Quellen](#7-quellen) \
    7.1 [Internetquellen](#71-internetquellen) \
    7.2 [Dokumentquellen](#72-dokumentquellen)
     
+=======
 
 ## 1. Zweck des Skripts und Git Repository
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
@@ -66,7 +67,7 @@ Das "initialWordPress.sh" Skript muss auf einem Linux Host, mit aws cli installi
 ## 4. Umsetzung
 Um Wordpress in AWs zu installieren haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
 
-### 4.1 Script installWordPress.sh erklärt
+### 4.1 Script installWordPress erklärt
 Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörigen Schlüsselpaaren und Sicherheitsgruppen erstellt.
 
 `aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem
@@ -109,7 +110,7 @@ Anschliessend wird die Variable "public_ip" wieder mit dem Platzhalter versehen.
 
 
 
-### 4.2 Script initialWordPress.txt erklärt
+### 4.2 Script initialWordPress erklärt
 Mit dem initialWordPress.txt Script wird auf der Instanz WordPress installiert und konfiguriert.
 
   `sudo apt-get update
@@ -158,7 +159,7 @@ Mit diesem Befehl wird die Standartseite in Apache deaktivieren und die Konfigur
 Zum Schluss wird die Wordpress-Konfigurationsdatei in den Worpress Installationsorder kopiert.
 
 
-### 4.3 Script initialMySQL.txt erklärt
+### 4.3 Script initialMySQL erklärt
 Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfiguriert.
 
   `sudo apt-get update
@@ -179,7 +180,7 @@ Schlussendlich wird der SQL Server mit dem Namen "mysql" gestartet.
 ### 4.4 Configs
 Mit den Configs werden MYSQL und Wordpress konfiguriert.
 
-#### 4.4.1 wp-config.php
+#### 4.4.1 wp-config
 Dieses Script wird als konfigurationsgrundlage für die Installation von Worpress verwendet. Dieses Config wird von Worpress bereitgestellt und man kann darin noch seine benötigten eigenen Variablen einfügen.
 
   `define( 'DB_NAME', 'wordpress' );
@@ -224,7 +225,7 @@ require_once ABSPATH . 'wp-settings.php';`
 
 Mit diesem Befehl werden eingeschlossene Dateien von WordPress_Vars eingerichtet.
 
-#### 4.4.2 wordpress.conf
+#### 4.4.2 wordpress
 Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host für den WordPress-Webserver konfiguriert.
 
   `<VirtualHost *:80>
@@ -243,7 +244,7 @@ Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host f�
 
 Mit diesen Befehlen wird zuerst ein Hauptverzeichnis definiert und anschliessend konfiguriert. Bei der Konfiguration wird das folgen von symbolischen Links aktiviert und das Überschreiben von Konfigurationen in .htacces-Dateien erlaubt. Zusätzlich wird der Standartindex auf "index.php" gesetzt und der Zugriff auf alle Anfragen erlaubt. Anschliessend wird das Verzeichnis "wp-content" konfiguriert. Dabei wird das folgen von symbolischen Links und der Zugriff auf alle Anfragen erlaubt.
 
-#### 4.4.3 MySQL_Setup.sql
+#### 4.4.3 MySQL_Setup
 Mit diesem Script wird die WordPress Datenbank erstellt und eingerichtet. 
 
  `CREATE DATABASE wordpress;`
@@ -264,6 +265,7 @@ Dem eben erstellten Benutzer "wordpress" werden die Berechtigungen Select, Inser
  
 Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
 
+#### 4.4.4 MySQLd
  
 ## 5. Tests
 Um sicherzustellen das nach dem Ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
@@ -356,8 +358,14 @@ Im folgenden Kapitel werden wir unser Projekt reflektieren und Verbesserungsvors
 Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses Projekt bekammen, wollten wir zuerst das Projekt "Bild verkleinerung" umsetzen. Nach einigen Recherchen mussten wir aber feststellen, dass wir aktuell nicht über einen genug grossen Wissensstand verfügten um diese Projekt umzusetzen. Deshalb haben wir uns schlussendlich für dieses Projekt entschieden. Zu Beginn war ich auch bei diesem Projekt etwas überfordert, doch mti der Hilfe von Samuel Riedener fand ich schnell heraus wie wir dieses Projekt angehen mussten und wo wir uns Informationen beschaffen konnten. Danach hatten wir sehr schnell die erste Version unseres Scripts zur einrichtung des CMS in AWS. Diese Version hat auch sehr gut funktioniert und hat die gewünschten Instancen mit den richtigen konfigurationen erstellt. Leider haben wir uns dann ein bisschen auf unseren Lorbeeren ausgeruht und stellten erst später fest, dass wir unsere SQL-Datenbank auf einer zweiten Instance haben müssen. Daurch kam ich etwas in den Stress, da ich sehr viel Recherche tätigen musste um diese Änderung umzusetzen. Schlussendlich musste ich aber merken, dass diese zusätzliche Änderung grundsätzlich ganz simpel einführbar sit. Dafür dass das Thema AWs für uns alle neu war und wir auch noch nie in einem Projekt GitHub zur Dokumentation verwenden durften, haben wir unsere Projekt sehr gut umgesetz. Als Verbesserungspunkte für ein Weiteres Projekt würde ich neben Github noch ein Kanban System einsetzen, damit die verschiedenen Aufgaben des Projekts klar aufgelistet werden könne. Denn bei diesem Projekt war ich mir nicht immer sicher woran die anderen Teammitglieder arbeiten und somit war es Teils sehr schwer den anderen zu helfen oder den überblick zu behalten welche Aufgabne noch erledigt werden müssen. Mit einem Kanban System wäre diese Problem gelöst und es wäre durch wneige Klicks sichtbar welche Aufgaben noch offen sind und woran die anderen Teammitglieder arbeiten. Ebenfalls würde ich bei einem weiteren Projekt gleich bei Beginn Meetings festlegen an denen alle Teammitglieder teilnehmen und sich austauschen, welche Aufgaben wer übernimmt und wo man noch Hilfe benötigt.
 
 ### 6.2 Davatz Ben
+Am Anfang konnten wir wählen zwischen den Projekten CMS, Ticketsystem, Bild verkleinern und StockPriceWatchdoc. Das Projekt Bild verkleinern kam uns am spannendsten und am besten umsetzbar vor. Doch wir haben schnell bemerkt, dass unser Wissensstand nicht genügend gross ist um dieses Projekt umzusetzen. Daher haben wir uns für das Projekt CMS entschieden.
+Beim Start des Projekts war ich sehr überfordert, da ich einige Lektionen, bei welchen wir das Thema durchgenommen haben, gefehlt habe. Daher war mein Wissensstand ziemlich klein. Aus diesem Grund war mein erster Schritt des Projekts, mich in das Thema hineinzudenken und Aufgaben nachzuholen. Durch Samuel Riedener habe ich auch nochmals vieles dazugelernt. Im Unterricht haben wir immer zusammen gearbeitet. Die Zeit im Unterricht konnten wir gut nutzen und die Zusammenarbeit hat ziemlich gut funktioniert. 
+Um Zuhause weiter zu arbeiten haben wir die Aufgaben sehr grob untereinander aufgeteilt. Leider hatten wir unter der Woche ziemlich schlechte Kommunikation. Wir haben uns gegenseitig kein update gegeben und wussten den Stand der Aufgaben erst wieder im Unterricht.
+Schade war das ich einmal, als ich an der Doku gearbeitet habe, den Laptop geschlossen habe ohne einen Commit durchzuführen. Somit waren zwei Stunden Arbeit verloren. Dies war das Erste Projekt, bei welchem ich die Dokumentation in einem Markdown Format in GitHub erstellen musste. Alle andere Dokumentationen habe ich mit Word durchgeführt. Darum bin ich mir gewöhnt, dass sich die Datei automatisch speichert.
+Bei meinem nächsten Projekt möchte ich einen solchen grossen Fehler vermeiden und auch von zuhause aus besser mit meiner Gruppe kommunizieren. Ansonsten kann ich viel gutes von diesem Projekt mitnehmen.
 
 ### 6.3 Riedener Samuel
+Das Projekt hat mir sehr gut gefallen. Ich hatte viel Spass am Testen und Überlegen wie ich unsere Probleme lösen muss. Teilweise war es auch etwas zäh. Zuerst wollten wir das Projekt Bild verkleinern machen. Allerdings haben wir da schnell gemerkt, dass wir das dazu notwendige Wissen im Programmieren noch nicht besitzen. Die Installation des CMS WordPress war dann allerdings genau das richtige. Ich konnte meine Erfahrungen mit Linux voll ausnutzen und so das Projekt zum Erfolg führen. Unglücklicherweise wurde ich in der letzten Woche noch krank und konnte nicht so viel Zeit investieren, wie ich wollte. Das Projekt konnten wir trotzdem noch gut abschliessen. In einem weiteren Projekt würde ich schauen, dass ich den Personen, die sich noch nicht so gut auskennen etwas besser aushelfe damit diese Linux besser kennen lernen.
 
 ## 7. Quellen
 ### 7.1 Internetquellen
@@ -380,8 +388,6 @@ Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer
    | 09-AA-EC2-Instance-CLI.pdf | 09.12.2023 |
    | 346-10-AA-IaC Beispiel.pdf | 09.12.2023 |
    | 09-AA-EC2-Instance-CLI.pdf | 09.12.2023 |
-
-
 
 
 ## 3. Formatierungen
@@ -428,6 +434,8 @@ Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer
  ### 4.1 Unterkapitel
 
  > Weitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere Funktionen
+
+
 
  
  
