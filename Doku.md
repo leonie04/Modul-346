@@ -149,7 +149,7 @@ Mit diesem Befehl wird die Standartseite in Apache deaktivieren und die Konfigur
 Zum Schluss wird die Wordpress-Konfigurationsdatei in den Worpress Installationsorder kopiert.
 
 
-### 4.3 Script initialMySQL.txt erklärt
+### 4.3 Script initialMySQL erklärt
 Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfiguriert.
 
   `sudo apt-get update
