@@ -39,7 +39,7 @@ sudo a2dissite 000-default
 sudo service apache2 reload
 
 # Die Database IP für die Wordpress konfiguration setzen
-sed -i 's/DB_Host_IP/Soll_DB_Host_IP/' file.txt
+sed -i 's/DB_Host_IP/Soll_DB_Host_IP/' Modul-346/Configs/wp-config.php
 
 # Wordpress konfigurationsdatei in Worpress Installationsorder kopieren
 sudo cp Modul-346/Configs/wp-config.php /srv/www/wordpress/
