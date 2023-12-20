@@ -6,9 +6,9 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 ## 1. Inhaltsverzeichnis
 
 ## 1. Inhaltsverzeichnis
-1. [Zweck des Skripts und Git Repository](#1-zweck-des-skripts-und-git-repository) 
+1. [Zweck des Skripts und Git Repository](#1-zweck-des-skripts-und-git-repository)
 
-2. [Planung](#2-planung) 
+2. [Planung](#2-planung)
 
 3. [Voraussetzugen](#3-voraussetzugen)
    
@@ -20,7 +20,7 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 	4.4.1 [wp-config.php](#441-wp-config.php) \
    	4.4.2 [wordpress.conf](#442-wordpress.conf) \
    	4.4.3 [MySQL_Setup.sql](#443-mysql_setup.sql) \
-   	4.4.4 [Configs](#443-configs)    
+   	4.4.4 [Configs](#443-configs)
     
 5. [Tests](#5-tests) \
    5.1 [Testfall 1](#51-testfall-1) \
@@ -32,16 +32,12 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 6. [Reflexion](#6-Reflexion) \
    6.1 [Bischofberger Leonie](#61-bischofberger-leonie) \
    6.2 [Riedener Samuel](#62-rieder-samuel) \
-   6.3 [Davatz Ben](#63-davatz-ben)         
+   6.3 [Davatz Ben](#63-davatz-ben)
 
 7. [Quellen](#7-quellen) \
    7.1 [Internetquellen](#71-internetquellen) \
    7.2 [Dokumentquellen](#72-dokumentquellen)
     
-6. Reflexion \
-   6.1 Bischofberger Leonie \
-   6.2 Riedener Samuel \
-   6.3 Davatz Ben 
 
 
 ## 1. Zweck des Skripts und Git Repository
@@ -382,8 +378,6 @@ Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer
    | 09-AA-EC2-Instance-CLI.pdf | 09.12.2023 |
 
 
-
-
 ## 3. Formatierungen
    | Spalte 1 | Spalte 2 |
    |----------|----------|
@@ -428,6 +422,8 @@ Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer
  ### 4.1 Unterkapitel
 
  > Weitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere Funktionen
+
+
 
  
  
