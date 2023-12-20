@@ -5,6 +5,16 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 ## 1. Inhaltsverzeichnis
 
+## 1. Inhaltsverzeichnis
+
+### Inhaltsverzeichnis
+1. [Tabelle einfügen](#1-tabelle-einfügen) \
+   1.1 [Unterkapitel](#11-unterkapitel)
+
+2. [Bild einfügen](#2-bild-einfügen) \
+   2.1 [Unterkapitel](#21-unterkapitel)
+
+
 1. Zweck des Skripts und Git Repository 
 
 2. Plannung 
