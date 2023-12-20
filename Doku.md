@@ -355,6 +355,7 @@ Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses 
 ### 6.2 Davatz Ben
 
 ### 6.3 Riedener Samuel
+Das Projekt hat mir sehr gut gefallen. Ich hatte viel Spass am Testen und Überlegen wie ich unsere Probleme lösen muss. Teilweise war es auch etwas zäh. Zuerst wollten wir das Projekt Bild verkleinern machen. Allerdings haben wir da schnell gemerkt, dass wir das dazu notwendige Wissen im Programmieren noch nicht besitzen. Die Installation des CMS WordPress war dann allerdings genau das richtige. Ich konnte meine Erfahrungen mit Linux voll ausnutzen und so das Projekt zum Erfolg führen. Unglücklicherweise wurde ich in der letzten Woche noch krank und konnte nicht so viel Zeit investieren, wie ich wollte. Das Projekt konnten wir trotzdem noch gut abschliessen. In einem weiteren Projekt würde ich schauen, dass ich den Personen, die sich noch nicht so gut auskennen etwas besser aushelfe damit diese Linux besser kennen lernen.
 
 ## 7. Quellen
 ### 7.1 Internetquellen
