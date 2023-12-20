@@ -1,8 +1,9 @@
+#!/bin/bash
 #Zweck:      Installationsverzeichnis erstellen und konfigurieren
 #Autor:      Bischofberger Leonie, Riedener Samuel, Davatz Ben
 #Datum:      09.12.2023
 
-#!/bin/bash
+
 # Apache2, Ghostsscript, und PHP installieren
 sudo apt-get update
 sudo apt-get -y install apache2 \
