@@ -13,13 +13,13 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 3. [Voraussetzugen](#3-voraussetzugen)
    
 4. [Umsetzung](#4-umsetzung) \
-   4.1 [Script installWordPress.sh erklärt](#41-script-installwordpress-sh-erklärt) \
-   4.2 [Script initialWordPress.txt erklärt](#42-script-initialwordpress.txt-erklärt) \
-   4.3 [Script initialMySQL.txt erklärt](#43-script-initialmysql.txt-erklärt) \
+   4.1 [Script installWordPress erklärt](#41-script-installwordpress-erklärt) \
+   4.2 [Script initialWordPress erklärt](#42-script-initialwordpress-erklärt) \
+   4.3 [Script initialMySQL erklärt](#43-script-initialmysql-erklärt) \
    4.4 [Configs](#44-configs) \
-	4.4.1 [wp-config.php](#441-wp-config.php) \
-   	4.4.2 [wordpress.conf](#442-wordpress.conf) \
-   	4.4.3 [MySQL_Setup.sql](#443-mysql_setup.sql) \
+	4.4.1 [wp-config](#441-wp-config) \
+   	4.4.2 [wordpress](#442-wordpress) \
+   	4.4.3 [MySQL_Setup](#443-mysql_setup) \
    	4.4.4 [Configs](#443-configs)
     
 5. [Tests](#5-tests) \
@@ -67,7 +67,7 @@ Das "initialWordPress.sh" Skript muss auf einem Linux Host, mit aws cli installi
 ## 4. Umsetzung
 Um Wordpress in AWs zu installieren haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
 
-### 4.1 Script installWordPress.sh erklärt
+### 4.1 Script installWordPress erklärt
 Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörigen Schlüsselpaaren und Sicherheitsgruppen erstellt.
 
 `aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem`
@@ -99,7 +99,7 @@ Mit diesem Befehl wird die Ip-Adresse der MYSQL-Instanz abegrufen und in der Var
 Mit diesem Befehl wird die Sicherheitsgruppe "wordpress-sec-group" aktualisert und der SSH Zugriff über die IP-Adresse der MySQL-Instanz erhlaubt.
 
 
-### 4.2 Script initialWordPress.txt erklärt
+### 4.2 Script initialWordPress erklärt
 Mit dem initialWordPress.txt Script wird auf der Instanz WordPress installiert und konfiguriert.
 
   `sudo apt-get update
@@ -169,7 +169,7 @@ Schlussendlich wird der SQL Server mit dem Namen "mysql" gestartet.
 ### 4.4 Configs
 Mit den Configs werden MYSQL und Wordpress konfiguriert.
 
-#### 4.4.1 wp-config.php
+#### 4.4.1 wp-config
 Dieses Script wird als konfigurationsgrundlage für die Installation von Worpress verwendet. Dieses Config wird von Worpress bereitgestellt und man kann darin noch seine benötigten eigenen Variablen einfügen.
 
   `define( 'DB_NAME', 'wordpress' );
@@ -214,7 +214,7 @@ require_once ABSPATH . 'wp-settings.php';`
 
 Mit diesem Befehl werden eingeschlossene Dateien von WordPress_Vars eingerichtet.
 
-#### 4.4.2 wordpress.conf
+#### 4.4.2 wordpress
 Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host für den WordPress-Webserver konfiguriert.
 
   `<VirtualHost *:80>
@@ -233,7 +233,7 @@ Mit diesem Script wird WordPress konfiguriert. Dabei wird ein virtueller Host f�
 
 Mit diesen Befehlen wird zuerst ein Hauptverzeichnis definiert und anschliessend konfiguriert. Bei der Konfiguration wird das folgen von symbolischen Links aktiviert und das Überschreiben von Konfigurationen in .htacces-Dateien erlaubt. Zusätzlich wird der Standartindex auf "index.php" gesetzt und der Zugriff auf alle Anfragen erlaubt. Anschliessend wird das Verzeichnis "wp-content" konfiguriert. Dabei wird das folgen von symbolischen Links und der Zugriff auf alle Anfragen erlaubt.
 
-#### 4.4.3 MySQL_Setup.sql
+#### 4.4.3 MySQL_Setup
 Mit diesem Script wird die WordPress Datenbank erstellt und eingerichtet. 
 
  `CREATE DATABASE wordpress;`
