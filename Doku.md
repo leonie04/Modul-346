@@ -13,7 +13,7 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 3. [Voraussetzugen](#3-voraussetzugen)
    
 4. [Umsetzung](#4-umsetzung) \
-   4.1 [Script installWordPress.sh erklärt](#41-script-installwordpress.sh-erklärt) \
+   4.1 [Script installWordPress sh erklärt](#41-script-installwordpress-sh-erklärt) \
    4.2 [Script initialWordPress.txt erklärt](#42-script-initialwordpress.txt-erklärt) \
    4.3 [Script initialMySQL.txt erklärt](#43-script-initialmysql.txt-erklärt) \
    4.4 [Configs](#44-configs) \
@@ -67,7 +67,7 @@ Das "initialWordPress.sh" Skript muss auf einem Linux Host, mit aws cli installi
 ## 4. Umsetzung
 Um Wordpress in AWs zu installieren haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
 
-### 4.1 Script installWordPress.sh erklärt
+### 4.1 Script installWordPress sh erklärt
 Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörigen Schlüsselpaaren und Sicherheitsgruppen erstellt.
 
 `aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem`
