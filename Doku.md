@@ -3,7 +3,6 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 
 
 
-## 1. Inhaltsverzeichnis
 
 ## 1. Inhaltsverzeichnis
 1. [Zweck des Skripts und Git Repository](#1-zweck-des-skripts-und-git-repository)
@@ -351,7 +350,7 @@ Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses 
 Am Anfang konnten wir wählen zwischen den Projekten CMS, Ticketsystem, Bild verkleinern und StockPriceWatchdoc. Das Projekt Bild verkleinern kam uns am spannendsten und am besten umsetzbar vor. Doch wir haben schnell bemerkt, dass unser Wissensstand nicht genügend gross ist um dieses Projekt umzusetzen. Daher haben wir uns für das Projekt CMS entschieden.
 Beim Start des Projekts war ich sehr überfordert, da ich einige Lektionen, bei welchen wir das Thema durchgenommen haben, gefehlt habe. Daher war mein Wissensstand ziemlich klein. Aus diesem Grund war mein erster Schritt des Projekts, mich in das Thema hineinzudenken und Aufgaben nachzuholen. Durch Samuel Riedener habe ich auch nochmals vieles dazugelernt. Im Unterricht haben wir immer zusammen gearbeitet. Die Zeit im Unterricht konnten wir gut nutzen und die Zusammenarbeit hat ziemlich gut funktioniert. 
 Um Zuhause weiter zu arbeiten haben wir die Aufgaben sehr grob untereinander aufgeteilt. Leider hatten wir unter der Woche ziemlich schlechte Kommunikation. Wir haben uns gegenseitig kein update gegeben und wussten den Stand der Aufgaben erst wieder im Unterricht.
-Schade war das ich einmal, als ich an der Doku gearbeitet habe, den Laptop geschlossen habe ohne einen Commit zu durchführen. Somit waren zwei Stunden Arbeit verloren. Dies war das Erste Projekt, bei welchem ich die Dokumentation in einem Markdown Format in GitHub erstellen musste. Alle andere Dokumentationen habe ich mit Word durchgeführt. Darum bin ich mir gewöhnt, dass sich die Datei automatisch speichert.
+Schade war das ich einmal, als ich an der Doku gearbeitet habe, den Laptop geschlossen habe ohne einen Commit durchzuführen. Somit waren zwei Stunden Arbeit verloren. Dies war das Erste Projekt, bei welchem ich die Dokumentation in einem Markdown Format in GitHub erstellen musste. Alle andere Dokumentationen habe ich mit Word durchgeführt. Darum bin ich mir gewöhnt, dass sich die Datei automatisch speichert.
 Bei meinem nächsten Projekt möchte ich einen solchen grossen Fehler vermeiden und auch von zuhause aus besser mit meiner Gruppe kommunizieren. Ansonsten kann ich viel gutes von diesem Projekt mitnehmen.
 
 ### 6.3 Riedener Samuel
