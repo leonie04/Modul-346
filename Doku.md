@@ -19,7 +19,7 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 	4.4.1 [wp-config](#441-wp-config) \
    	4.4.2 [wordpress](#442-wordpress) \
    	4.4.3 [MySQL_Setup](#443-mysql_setup) \
-   	4.4.4 [Configs](#443-configs)
+   	4.4.4 [MySQLd](#444-mysqld)
     
 5. [Tests](#5-tests) \
    5.1 [Testfall 1](#51-testfall-1) \
