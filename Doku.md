@@ -146,7 +146,7 @@ Mit diesem Befehl wird die neuste Wordpressversion heruntergeladen und dekomprim
   
   `sudo cp Modul-346/Configs/wordpress.conf /etc/apache2/sites-available/`
 
-Nun wird das Git geklont und `wordpress.conf` in das Verzeichnis des virtuellen Hosts kopieren.
+Nun wird das Git geklont und "wordpress.conf" in das Verzeichnis des virtuellen Hosts kopieren.
 
   `sudo a2ensite wordpress`
   
@@ -176,7 +176,7 @@ Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfigu
   
   `sudo apt-get -y install mysql-server` 
 
-Mit diesen Befehlen wird zuerst die Liste der neusten verfügbaren Software abgerufen und anschliessend der `mysql-server` installiert.
+Mit diesen Befehlen wird zuerst die Liste der neusten verfügbaren Software abgerufen und anschliessend der "mysql-server" installiert.
                  
   `git clone https://github.com/leonie04/Modul-346`
   
@@ -191,11 +191,11 @@ Schlussendlich wird der SQL Server mit dem Namen "mysql" gestartet.
   `sleep 6s`
   `sudo cp Modul-346/Configs/mysqld.cnf /etc/mysql/mysql.conf.d/`
 
-Mit diesen Befehlen wird zuerst 6 Sekunden gewartet und anschliessend das Dokument `mysql.conf` in den Ordner mysql.conf.d kopiert.
+Mit diesen Befehlen wird zuerst 6 Sekunden gewartet und anschliessend das Dokument "mysql.conf" in den Ordner mysql.conf.d kopiert.
 
  `sudo service mysql restart`
 
-Schlussendlich wird der `mysql-Service` neugestartet.
+Schlussendlich wird der "mysql-Service" neugestartet.
 
 
 
