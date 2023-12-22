@@ -334,11 +334,11 @@ Mängelklasse: 0 = mängelfrei; 1 = belangloser Mangel; 2 = leichter Mangel; 3 =
    | Testschritte | Auf dem Linux Host wird der folgende Befehl ausgeführt: *aws ec2 describe-security-groups --group-name wordpress-sec-group* |
    | Erwartetes Ergebnis | Die Security-Group "wordpress-sec-group" wird aufgelistet und zeigt die richtige Konfiguration. |
    
-![describe-security-groups 1 von 3](bilder/Screenshot 2023-12-20 145615.png)
+![describe-security-groups 1 von 3](bilder/Screenshot_2023-12-20_145615.png)
 
-![describe-security-groups 2 von 3](bilder/Screenshot 2023-12-20 145650.png)
+![describe-security-groups 2 von 3](bilder/Screenshot_2023-12-20_145650.png)
 
-![describe-security-groups 3 von 3](bilder/Screenshot 2023-12-20 145803.png)
+![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_145803.png)
 
 Testdurchführung und Testergebnis
    | Testdatum | 16.12.2023 |
