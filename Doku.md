@@ -80,6 +80,7 @@ Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. D
 
 
 `echo create sec group`
+
 `aws ec2 create-security-group --group-name wordpress-sec-group --description "EC2-WordPress-SG" | cat > secGroup.log`
 
 `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 80 --cidr 0.0.0.0/0 | cat >> secGroup.log`
@@ -113,7 +114,7 @@ Die Datei initialWordPress.txt wird kopiert und die Kopie wird umbenannt initial
  
 Als Rückmeldugn der Befehle erhält man den Text "start wordpress instance". Mit den folgenden Befehlen wird eine Instanz mit dem Namen "WordPress" gestartet. Dieser Instanz wird die Security-Group "wordpress-sec-group" und das Schlüsselpaar "aws-wordpress-cli" angefügt. Die Ausgaben der Befehle werden in die Datei "WordPressInstance.log" geschrieben. Schlussendlich wird die Berechtigung des RSA keys so gesetzt, dass nur der Besitzer die Datei "~/.ssh/aws-wordpress-cli.pem" lesen und bearbeiten kann.
 
-`wp_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=WordPress" --query`   `"Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
+`wp_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=WordPress" --query "Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
 
 Mit diesen Befehlen wird die IP-Adresse der "WordPress" Instanz in die Variable "wp_ip" gespeichert.
 
@@ -127,23 +128,12 @@ Schlussendlich erhält man die Rückmeldung "wordpress is soon avaiable on" zus�
 Mit dem initialWordPress.txt Script wird auf der Instanz WordPress installiert und konfiguriert.
 
   `sudo apt-get update
-sudo apt-get -y install apache2 \
-                 ghostscript \
-                 libapache2-mod-php \
-                 php \
-                 php-bcmath \
-                 php-curl \
-                 php-imagick \
-                 php-intl \
-                 php-json \
-                 php-mbstring \
-                 php-mysql \
-                 php-xml \
-                 php-zip`
+  sudo apt-get -y install apache2 ghostscript libapache2-mod-php php php-bcmath php-curl php-imagick php-intl php-json php-mbstring php-mysql php-xml php-zip`
 
 Mit diesem Befehl wird die Liste der neusten verfügbaren Software abgerufen. Anschliessend werden Apache2, Ghostsscript, und PHP installiert.
 
   `sudo mkdir -p /srv/www`
+  
   `sudo chown www-data: /srv/www`
 
 Das Verzeichnis "/srv/www" wird erstellt und dem Webserver Schreibzugriff gewährt.
@@ -153,16 +143,19 @@ Das Verzeichnis "/srv/www" wird erstellt und dem Webserver Schreibzugriff gewäh
 Mit diesem Befehl wird die neuste Wordpressversion heruntergeladen und dekomprimiert. 
 
   `git clone https://github.com/leonie04/Modul-346`
+  
   `sudo cp Modul-346/Configs/wordpress.conf /etc/apache2/sites-available/`
 
 Nun wird das Git geklont und `wordpress.conf` in das Verzeichnis des virtuellen Hosts kopieren.
 
   `sudo a2ensite wordpress`
+  
   `sudo a2enmod rewrite`
 
 Anschliessend wird Wordpress in Apache aktiviert und rewrite für die URL-Umleitung aktiviert.
 
   `sudo a2dissite 000-default`
+  
   `sudo service apache2 reload`
 
 Mit diesem Befehl wird die Standartseite in Apache deaktivieren und die Konfigurationen neugeladen.
@@ -180,11 +173,13 @@ Zum Schluss wird die Wordpress-Konfigurationsdatei in den Worpress Installations
 Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfiguriert.
 
   `sudo apt-get update`
+  
   `sudo apt-get -y install mysql-server` 
 
 Mit diesen Befehlen wird zuerst die Liste der neusten verfügbaren Software abgerufen und anschliessend der `mysql-server` installiert.
                  
   `git clone https://github.com/leonie04/Modul-346`
+  
    `sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql` 
 
 Das Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird die Datei "MySQL_Setup.sql" ausgeführt.
@@ -244,8 +239,9 @@ Mit diesem Befehl kann der WordPress-Debugging-Modus aktiviert werden. Aktuell i
 
 `if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
-}
-require_once ABSPATH . 'wp-settings.php';`
+}`
+
+`require_once ABSPATH . 'wp-settings.php';`
 
 Mit diesem Befehl werden eingeschlossene Dateien von WordPress_Vars eingerichtet.
 
@@ -301,6 +297,7 @@ Dieser Befehl definiert, dass die folgenden Befehle für den Dienst MySQL gelten
 Nun wird festgelegt, dass der Server mit dem Benutzer "mysql" gestartet werden soll.
 
  `bind-address           = 127.0.0.1`
+ 
  `mysqlx-bind-address     = 127.0.0.1`
 
 Dieser Befehl definiert, dass die MySQL X-Protokollbindung über die IP-Adresse "127.0.0.1" geführt wird. Die Konfigurationsdatei wird gebraucht um die Standarteinstellung auszukommentieren.
