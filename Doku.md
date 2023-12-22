@@ -365,7 +365,7 @@ Testdurchführung und Testergebnis
    | Mangelbeschreibung | Der Test wurde erfolgreich durchgeführt. |
    | Bemerkungen | Das Schlüsselpaar "aws-wordpress-cli" wurde erstellt und wurde den Instanzen zugeordnet. |
 
-![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_150257.png)
+![describe-key-pair 1 von 1](bilder/Screenshot_2023-12-20_150257.png)
 
 ### 5.3 Testfall 3 
    |ID / Bezeichnung | T-003 Wordpress Installation prüfen |
@@ -383,7 +383,7 @@ Testdurchführung und Testergebnis
    | Mangelbeschreibung | Der Test wurde erfolgreich durchgeführt. |
    | Bemerkungen | Die Startseite der Wordpress-Instanz konnte im Browser geöffnet werden. Damit steht der Webserver nun zur Verfügung und kann verwendet werden.  |
 
-![describe-security-groups 3 von 3](bilder/WordPressStartseite.png)
+![describe-Wordpress-installation 1 von 1](bilder/WordPressStartseite.png)
 
 ### 5.4 Testfall 4 
    |ID / Bezeichnung | T-004 Prüfen ob SQL-Datenbank online ist |
@@ -401,7 +401,7 @@ Testdurchführung und Testergebnis
    | Mangelbeschreibung | Die SQL-Datenbank wurde versehentlich vor dem Test gestoppt. Deshalb war der Server während dem Test offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online und Verfügbar. |
    | Bemerkungen | Die SQL-Datenbank ist online. Die Datenbank wurde somit korrekt aufgesetz und kann verwendet werden. |   
 
-![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_151037.png)
+![describe-status-sql-db 1 von 1](bilder/Screenshot_2023-12-20_151037.png)
 
 
 ### 5.5 Testfall 5 
@@ -420,7 +420,7 @@ Testdurchführung und Testergebnis
    | Mangelbeschreibung | Es wurde ausgegeben, dass der User "wordpress" über die gewünschten Berechtigungen verfüggt. |
    | Bemerkungen | Der User Wordpress besitzt die Berechtigung SELECT, INSERT, UP-DATE, DELETE, CREATE, DROP und ALTER  |  
 
-![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_151450.png)
+![describe-grant-user 1 von 1](bilder/Screenshot_2023-12-20_151450.png)
 
 ## 6. Reflexion
 Im folgenden Kapitel werden wir unser Projekt reflektieren und Verbesserungsvorschläge darlegen.
