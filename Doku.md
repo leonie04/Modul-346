@@ -69,8 +69,8 @@ Um Wordpress in AWs zu installieren haben wir verschiedene Scripts erstellt. Die
 ### 4.1 Script installWordPress erklärt
 Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörigen Schlüsselpaaren und Sicherheitsgruppen erstellt.
 
-`aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem
-echo create sec group`
+`aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem`
+`echo create sec group`
  
 Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Anschliessend wird der private Schlüssel exportiert und in die Datei: "~/.ssh/aws-wordpress-cli.pem" geschrieben. Als Rückmeldung erhält man den Text "create sec group"
 
@@ -84,12 +84,12 @@ Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. D
 Mit diesen Befehlen wird eine Sicherheitgruppe namens "wordpress-sec-group" und der Beschreibung "EC2-WordPress-SG" erstellt. Bei der erstellten Sicherheitsgruppe wird der Zugriff über HTTP (Port 80), HTTPS (Port 443), MySQL (Port 3306) und SSH (Port 22) von überall (0.0.0.0/0) freigegeben. Die Ausgaben der Befehle werden der Datei "secGroup.log" angefügt. Die Datei wird bei jedem Start des Script neu erstellt und enthält somit nur die Logs der aktuellen Scriptsitzung. 
 
 `echo start mysql instance`
-`aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialMySQL.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MySQL_oie2ds45turo}]' | cat > MySQLInstance.log`
+`aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data `file://initialMySQL.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MySQL_oie2ds45turo}]' |` `cat > MySQLInstance.log`
 
 Als Rückmeldung erhält man den Text "start mysql instance". Mit diesen Befehlen wird eine Instanz mit den Namen "MySQL" gestartet. Der Instanz wird, die zu Beginn erstellte Sicherheitgruppe und Schlüsselpaar, mitgegeben. Zusätzlich wir ein Instanzprofil mit dem Namen "LabInstanceProfile" hinzugefügt. Die Ausgaben der Befehle wird in der Datei "MySQLInstance.log" gespeichert.
 
 `cp initialWordPress.txt initialWordPressLive.txt`
-`public_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=MySQL_oie2ds45turo" --query "Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
+`public_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=MySQL_oie2ds45turo" --query` `"Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
 `sed -i "s/Soll_DB_Host_IP/$public_ip/" initialWordPresslive.txt`
 
 Die Datei initialWordPress.txt wird kopiert und die Kopie heisst initialWordPressLive.txt. Die IP-Adresse der erstellten Instanz wird dann abgefragt und in die Variable pubilc_ip geschrieben. Anschliessend wird die Variable in das Dokument "initialWordPressLive.txt" kopiert. 
@@ -100,7 +100,7 @@ Die Datei initialWordPress.txt wird kopiert und die Kopie heisst initialWordPres
  
 Als Rückmeldugn der Befehle erhält man den Text "start wordpress instance". Mit den folgenden Befehlen wird eine Instanz mit dem Namen "WordPress" gestartet. Dieser Instanz wird die Security-Group "wordpress-sec-group" und das Schlüsselpaar "aws-wordpress-cli" angefügt. Die Ausgaben der Befehle werden in die Datei "WordPressInstance.log" geschrieben. Schlussendlich wird die Berechtigung des RSA keys so gesetzt, dass nur der Besitzer die Datei "~/.ssh/aws-wordpress-cli.pem" lesen und bearbeiten kann.
 
-  `wp_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=WordPress" --query "Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
+  `wp_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=WordPress" --query`   `"Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
 
 Mit diesen Befehlen wird die IP-Adresse der "WordPress" Instanz in die Variable "wp_ip" gespeichert.
 
@@ -130,8 +130,8 @@ sudo apt-get -y install apache2 \
 
 Mit diesem Befehl wird die Instanz geupdatet. Anschliessend werden Apache2, Ghostsscript, und PHP installiert.
 
-  `sudo mkdir -p /srv/www
-sudo chown www-data: /srv/www`
+  `sudo mkdir -p /srv/www`
+  `sudo chown www-data: /srv/www`
 
 Das Verzeichnis "/srv/www" wird erstellt und dem Webserver Schreibzugriff gewährt.
 
@@ -139,18 +139,18 @@ Das Verzeichnis "/srv/www" wird erstellt und dem Webserver Schreibzugriff gewäh
 
 Mit diesem Befehl wird die neuste Wordpressversion heruntergeladen. 
 
-  `git clone https://github.com/leonie04/Modul-346
-sudo cp Modul-346/Configs/wordpress.conf /etc/apache2/sites-available/`
+  `git clone https://github.com/leonie04/Modul-346`
+  `sudo cp Modul-346/Configs/wordpress.conf /etc/apache2/sites-available/`
 
 Nun wird das Git geklont und wordpress.conf in das Verzeichnis des virtuellen Hosts kopieren.
 
-  `sudo a2ensite wordpress
-sudo a2enmod rewrite`
+  `sudo a2ensite wordpress`
+  `sudo a2enmod rewrite`
 
 Anschliessend wird Wordpress in Apache aktiviert und rewrite für die URL-Umleitung aktiviert.
 
-  `sudo a2dissite 000-default
-sudo service apache2 reload`
+  `sudo a2dissite 000-default`
+  `sudo service apache2 reload`
 
 Mit diesem Befehl wird die Standartseite in Apache deaktivieren und die Konfigurationen neugeladen.
 
@@ -166,13 +166,13 @@ Zum Schluss wird die Wordpress-Konfigurationsdatei in den Worpress Installations
 ### 4.3 Script initialMySQL erklärt
 Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfiguriert.
 
-  `sudo apt-get update
-sudo apt-get -y install mysql-server` 
+  `sudo apt-get update`
+  `sudo apt-get -y install mysql-server` 
 
 Mit diesen Befehlen wird zuerst die Instanz geupdatet und anschliessend der mysql-server installiert.
                  
-  `git clone https://github.com/leonie04/Modul-346
-  sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql` 
+  `git clone https://github.com/leonie04/Modul-346`
+   `sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql` 
 
 Das Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird die Datei "MySQL_Setup.sql" ausgeführt.
 
