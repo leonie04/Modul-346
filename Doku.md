@@ -74,24 +74,25 @@ echo create sec group`
  
 Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Anschliessend wird der private Schlüssel exportiert und in die Datei: "~/.ssh/aws-wordpress-cli.pem" geschrieben. Als Rückmeldung erhält man den Text "create sec group"
 
-  `aws ec2 create-security-group --group-name wordpress-sec-group --description "EC2-WordPress-SG" | cat > secGroup.log`
-  `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 80 --cidr 0.0.0.0/0 | cat >> secGroup.log`
-  `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 443 --cidr 0.0.0.0/0 | cat >> secGroup.log`
-  `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 22 --cidr 0.0.0.0/0 | cat >> secGroup.log`
-  `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 3306 --cidr 0.0.0.0/0 | cat >> secGroup.log`
-  `echo start mysql instance` 
+`aws ec2 create-security-group --group-name wordpress-sec-group --description "EC2-WordPress-SG" | cat > secGroup.log`
+`aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 80 --cidr 0.0.0.0/0 | cat >> secGroup.log`
+`aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 443 --cidr 0.0.0.0/0 | cat >> secGroup.log`
+`aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 22 --cidr 0.0.0.0/0 | cat >> secGroup.log`
 
-Mit diesen Befehlen wird eine Sicherheitgruppe namens "wordpress-sec-group" und der Beschreibung "EC2-WordPress-SG" erstellt. Bei der erstellten Sicherheitsgruppe wird der Zugriff über HTTP (Port 80), HTTPS (Port 443), MySQL (Port 3306) und SSH (Port 22) von überall (0.0.0.0/0) freigegeben. Die Ausgaben der Befehle werden der Datei "secGroup.log" angefügt. Die Datei wird bei jedem Start des Script neu erstellt und enthält somit nur die Logs der aktuellen Scriptsitzung. Als Rückmeldung erhält man den Text "start mysql instance".
 
+
+Mit diesen Befehlen wird eine Sicherheitgruppe namens "wordpress-sec-group" und der Beschreibung "EC2-WordPress-SG" erstellt. Bei der erstellten Sicherheitsgruppe wird der Zugriff über HTTP (Port 80), HTTPS (Port 443), MySQL (Port 3306) und SSH (Port 22) von überall (0.0.0.0/0) freigegeben. Die Ausgaben der Befehle werden der Datei "secGroup.log" angefügt. Die Datei wird bei jedem Start des Script neu erstellt und enthält somit nur die Logs der aktuellen Scriptsitzung. 
+
+`echo start mysql instance`
 `aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialMySQL.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MySQL_oie2ds45turo}]' | cat > MySQLInstance.log`
 
-Mit diesen Befehlen wird eine Instanz mit den Namen "MySQL_oie2ds45turo" gestartet. Der Instanz wird, die zu Beginn erstellte Sicherheitgruppe und Schlüsselpaar, mitgegeben. Zusätzlich wir ein Instanzprofil mit dem Namen "LabInstanceProfile" hinzugefügt. Die Ausgaben der Befehle wird in der Datei "MySQLInstance.log" gespeichert.
+Als Rückmeldung erhält man den Text "start mysql instance". Mit diesen Befehlen wird eine Instanz mit den Namen "MySQL" gestartet. Der Instanz wird, die zu Beginn erstellte Sicherheitgruppe und Schlüsselpaar, mitgegeben. Zusätzlich wir ein Instanzprofil mit dem Namen "LabInstanceProfile" hinzugefügt. Die Ausgaben der Befehle wird in der Datei "MySQLInstance.log" gespeichert.
 
 `cp initialWordPress.txt initialWordPressLive.txt`
 `public_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=MySQL_oie2ds45turo" --query "Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
 `sed -i "s/Soll_DB_Host_IP/$public_ip/" initialWordPresslive.txt`
 
-Die Datei initialWordPress.txt wird kopiert und die kopie heisst initialWordPressLive.txt. Die IP-Adresse der erstellten Instanz wird dann abgefragt und in die Variable pubilc_ip geschrieben. Anschliessend wird die Variable in das Dokument "initialWordPressLive.txt" kopiert. 
+Die Datei initialWordPress.txt wird kopiert und die Kopie heisst initialWordPressLive.txt. Die IP-Adresse der erstellten Instanz wird dann abgefragt und in die Variable pubilc_ip geschrieben. Anschliessend wird die Variable in das Dokument "initialWordPressLive.txt" kopiert. 
 
   `echo start wordpress instance`
 `aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialWordPressLive.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=WordPress}]' | cat > WordPressInstance.log`
@@ -153,6 +154,10 @@ sudo service apache2 reload`
 
 Mit diesem Befehl wird die Standartseite in Apache deaktivieren und die Konfigurationen neugeladen.
 
+  `sed -i 's/DB_Host_IP/Soll_DB_Host_IP/' Modul-346/Configs/wp-config.php`
+
+Nun wird die IP-Adresse für die Worpress konfiguration hinterlegt.
+
   `sudo cp Modul-346/Configs/wp-config.php /srv/www/wordpress/`
 
 Zum Schluss wird die Wordpress-Konfigurationsdatei in den Worpress Installationsorder kopiert.
@@ -175,6 +180,16 @@ Das Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird d
 
 Schlussendlich wird der SQL Server mit dem Namen "mysql" gestartet.
 
+  `sleep 6s`
+  `sudo cp Modul-346/Configs/mysqld.cnf /etc/mysql/mysql.conf.d/`
+
+Mit diesen Befehlen wird zuerst 6 Sekunden gewartet und anschliessend das Dokument mysql.cnf  in den Ordner mysql.conf.d kopiert.
+
+ `sudo service mysql restart`
+
+Schlussendlich wird der «mysql» Service neugestartet.
+
+
 
 ### 4.4 Configs
 Mit den Configs werden MYSQL und Wordpress konfiguriert.
@@ -182,18 +197,15 @@ Mit den Configs werden MYSQL und Wordpress konfiguriert.
 #### 4.4.1 wp-config
 Dieses Script wird als konfigurationsgrundlage für die Installation von Worpress verwendet. Dieses Config wird von Worpress bereitgestellt und man kann darin noch seine benötigten eigenen Variablen einfügen.
 
-  `define( 'DB_NAME', 'wordpress' );
-define( 'DB_USER', 'wordpress' );
-define( 'DB_PASSWORD', 'Vz7,4*,4C3Y7' );
-define( 'DB_HOST', '%' );
-define( 'DB_CHARSET', 'utf8' );
-define( 'DB_COLLATE', '' );`
+```define( 'DB_NAME', 'wordpress' );```
+```define( 'DB_USER', 'wordpress' );```
+```define( 'DB_PASSWORD', 'p!&vvvn?GtgJ0cRs!gHd[7w@Z&@GMG>pETwzV$.1jw(Ej*^w2mt=*St0n$Hy]TW;' );```
+```define( 'DB_HOST', 'DB_Host_IP' );```
+```define( 'DB_CHARSET', 'utf8' );```
+```define( 'DB_COLLATE', '' );```
 
 Mit diesen Befehlen werden die folgednen Elemente definiert: Datenbankname, Datenbankuser, Datenbankpasswort, Datenbankhostnamen und Datenbankcharset 
 
-  `mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);`
-
-Mit diesem Befehl wird die Datenbank verbunden. Dazu werden die oben definierten Elemente verwendet.
 
   ```define('AUTH_KEY',         '4^*;gYe@h>iOHX/Q8YwJ[F{h)Wq@!n%76uWqcjjUrH-+udb2B[OrB*8$(>M}78II');```
   ```define('SECURE_AUTH_KEY',  '5SI@(M+l]}GU|u3*m1;zWV5Cw3y#g<H3T2s%-ydT_|Xt3!1m {k)D&mLU+ G/FOH');```
@@ -250,7 +262,7 @@ Mit diesem Script wird die WordPress Datenbank erstellt und eingerichtet.
 
  Mit diesem Befehl wird die Wordpress Datenbank mit dem Namen "wordpress" erstellt.
  
- `CREATE USER 'wordpress'@'%' IDENTIFIED BY 'Vz7,4*,4C3Y7';`
+ `CREATE USER 'wordpress'@'%' IDENTIFIED BY 'p!&vvvn?GtgJ0cRs!gHd[7w@Z&@GMG>pETwzV$.1jw(Ej*^w2mt=*St0n$Hy]TW;';`
 
  Mit diesem Befehl wird der Benutzer "wordpress" erstellt und so konfiguriert, dass er von überall zugreifen kann.
  
@@ -265,7 +277,41 @@ Dem eben erstellten Benutzer "wordpress" werden die Berechtigungen Select, Inser
 Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
 
 #### 4.4.4 MySQLd
- 
+
+ `[mysqld]`
+
+Dieser Befehl definiert dass die folgenden Befehle für den Dienst MySQL gelten
+
+
+ `user            = mysql`
+
+Nun wird festgelegt, dass der Server mit dem Benutzer "mysql" gestartet werden soll.
+
+
+ `mysqlx-bind-address     = 127.0.0.1`
+
+Dieser Befehl definiert, dass die MySQL X-Protokollbindung über die IP-Adresse "127.0.0.1" geführt wird.
+
+ `key_buffer_size         = 16M`
+
+Mit diesem Befehl wird die Schlüsselpuffergrösse auf 16M gelegt. 
+
+
+ `myisam-recover-options  = BACKUP`
+
+Nun wird festgelegt,dass eine automatische Sicherung durchgeführt wird, wenn ein Fehler auftritt.
+
+
+ `log_error = /var/log/mysql/error.log`
+
+Mit diesem Befehl wird festgelegt, dass die Fehlermeldungen in der Datei "/var/log/mysql/error.log" abgelegt werden sollen.
+
+
+ `max_binlog_size   = 100M` 
+
+Dieser Befehl legt die masimale Grösse für Binärprotokoll-Dateien auf 100 Megabyte.
+
+
 ## 5. Tests
 Um sicherzustellen das nach dem Ausführen der Scripts Wordpress und die SQL-Datenbank korrekt zur verfügung stehen haben wird folgende Test durchgeführt und nach den Mängelklassen bewertet.
 Mängelklasse: 0 = mängelfrei; 1 = belangloser Mangel; 2 = leichter Mangel; 3 = schwerer Mangel; 4 = kritischer Mangel
