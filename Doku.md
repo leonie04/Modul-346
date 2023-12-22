@@ -43,11 +43,11 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
 Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
 
 ## 2. Planung
-Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.3023 fertig haben, damit wir anschliessend noch genügend Zeit für die Dokumentation und alfällige Fehlerbehebung haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das dokumentieren aufteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
+Damit wir unser Projekt Systematisch umsetzen können haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.2023 fertig haben, damit wir anschliessend noch genügend Zeit für die Dokumentation und alfällige Fehlerbehebungen haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das dokumentieren aufgeteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
 
    | Tätigkeit | Person | Zeitrahmen |
    |----------|----------|----------|
-   | Plannung | Bischofberger Leonie | 06.12.2023 |
+   | Planung | Bischofberger Leonie | 06.12.2023 |
    | Dokumentation erstellen | Davatz Ben | 06.12.2023 |
    | Instancen installieren | Bischofberger Leonie, Riedener Samuel | 06. - 13.12.2023 |
    | WordPress installieren | Bischofberger Leonie, Riedener Samuel | 06. - 13.12.2023 |
@@ -64,16 +64,16 @@ Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Ze
 Das "initialWordPress.sh" Skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen "initialmysql.txt" und "initialWordPress.txt" müssen im gleichen Ordner wie das "initialWordPress.sh" sein.
 
 ## 4. Umsetzung
-Um Wordpress in AWs zu installieren haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
+Um Wordpress in AWS zu installieren haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
 
 ### 4.1 Script installWordPress erklärt
 Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörigen Schlüsselpaaren und Sicherheitsgruppen erstellt.
 
 `aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem`
-`echo create sec group`
  
-Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Anschliessend wird der private Schlüssel exportiert und in die Datei: "~/.ssh/aws-wordpress-cli.pem" geschrieben. Als Rückmeldung erhält man den Text "create sec group"
+Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Anschliessend wird der private Schlüssel exportiert und in die Datei: "~/.ssh/aws-wordpress-cli.pem" geschrieben. Als Rückmeldung erhält man den Text "create sec group".
 
+`echo create sec group`
 `aws ec2 create-security-group --group-name wordpress-sec-group --description "EC2-WordPress-SG" | cat > secGroup.log`
 `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 80 --cidr 0.0.0.0/0 | cat >> secGroup.log`
 `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 443 --cidr 0.0.0.0/0 | cat >> secGroup.log`
@@ -92,7 +92,7 @@ Als Rückmeldung erhält man den Text "start mysql instance". Mit diesen Befehle
 `public_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=MySQL_oie2ds45turo" --query` `"Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
 `sed -i "s/Soll_DB_Host_IP/$public_ip/" initialWordPresslive.txt`
 
-Die Datei initialWordPress.txt wird kopiert und die Kopie heisst initialWordPressLive.txt. Die IP-Adresse der erstellten Instanz wird dann abgefragt und in die Variable pubilc_ip geschrieben. Anschliessend wird die Variable in das Dokument "initialWordPressLive.txt" kopiert. 
+Die Datei initialWordPress.txt wird kopiert und die Kopie wird umbenannt initialWordPressLive.txt. Die IP-Adresse der erstellten Instanz wird dann abgefragt und in die Variable pubilc_ip geschrieben. Anschliessend wird die Variable in das Dokument "initialWordPressLive.txt" kopiert. 
 
   `echo start wordpress instance`
 `aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialWordPressLive.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=WordPress}]' | cat > WordPressInstance.log`
@@ -128,7 +128,7 @@ sudo apt-get -y install apache2 \
                  php-xml \
                  php-zip`
 
-Mit diesem Befehl wird die Instanz geupdatet. Anschliessend werden Apache2, Ghostsscript, und PHP installiert.
+Mit diesem Befehl wird die Liste der neusten verfügbaren Software abgerufen. Anschliessend werden Apache2, Ghostsscript, und PHP installiert.
 
   `sudo mkdir -p /srv/www`
   `sudo chown www-data: /srv/www`
@@ -137,12 +137,12 @@ Das Verzeichnis "/srv/www" wird erstellt und dem Webserver Schreibzugriff gewäh
 
   `curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www`
 
-Mit diesem Befehl wird die neuste Wordpressversion heruntergeladen. 
+Mit diesem Befehl wird die neuste Wordpressversion heruntergeladen und dekomprimiert. 
 
   `git clone https://github.com/leonie04/Modul-346`
   `sudo cp Modul-346/Configs/wordpress.conf /etc/apache2/sites-available/`
 
-Nun wird das Git geklont und wordpress.conf in das Verzeichnis des virtuellen Hosts kopieren.
+Nun wird das Git geklont und `wordpress.conf` in das Verzeichnis des virtuellen Hosts kopieren.
 
   `sudo a2ensite wordpress`
   `sudo a2enmod rewrite`
@@ -169,7 +169,7 @@ Mit dem initialWordPress.txt Script wird eine SQL Datenbank erstellt und konfigu
   `sudo apt-get update`
   `sudo apt-get -y install mysql-server` 
 
-Mit diesen Befehlen wird zuerst die Instanz geupdatet und anschliessend der mysql-server installiert.
+Mit diesen Befehlen wird zuerst die Liste der neusten verfügbaren Software abgerufen und anschliessend der `mysql-server` installiert.
                  
   `git clone https://github.com/leonie04/Modul-346`
    `sudo mysql -u root < Modul-346/Configs/MySQL_Setup.sql` 
@@ -183,11 +183,11 @@ Schlussendlich wird der SQL Server mit dem Namen "mysql" gestartet.
   `sleep 6s`
   `sudo cp Modul-346/Configs/mysqld.cnf /etc/mysql/mysql.conf.d/`
 
-Mit diesen Befehlen wird zuerst 6 Sekunden gewartet und anschliessend das Dokument mysql.cnf  in den Ordner mysql.conf.d kopiert.
+Mit diesen Befehlen wird zuerst 6 Sekunden gewartet und anschliessend das Dokument `mysql.conf` in den Ordner mysql.conf.d kopiert.
 
  `sudo service mysql restart`
 
-Schlussendlich wird der «mysql» Service neugestartet.
+Schlussendlich wird der `mysql-Service` neugestartet.
 
 
 
@@ -280,17 +280,17 @@ Mit diesem Befehl werden die Berechtigungen aktualisert und aktiviert.
 
  `[mysqld]`
 
-Dieser Befehl definiert dass die folgenden Befehle für den Dienst MySQL gelten
+Dieser Befehl definiert, dass die folgenden Befehle für den Dienst MySQL gelten.
 
 
  `user            = mysql`
 
 Nun wird festgelegt, dass der Server mit dem Benutzer "mysql" gestartet werden soll.
 
-
+ `bind-address           = 127.0.0.1`
  `mysqlx-bind-address     = 127.0.0.1`
 
-Dieser Befehl definiert, dass die MySQL X-Protokollbindung über die IP-Adresse "127.0.0.1" geführt wird.
+Dieser Befehl definiert, dass die MySQL X-Protokollbindung über die IP-Adresse "127.0.0.1" geführt wird. Die Konfigurationsdatei wird gebraucht um die Standarteinstellung auszukommentieren.
 
  `key_buffer_size         = 16M`
 
@@ -309,7 +309,7 @@ Mit diesem Befehl wird festgelegt, dass die Fehlermeldungen in der Datei "/var/l
 
  `max_binlog_size   = 100M` 
 
-Dieser Befehl legt die masimale Grösse für Binärprotokoll-Dateien auf 100 Megabyte.
+Dieser Befehl legt die maximale Grösse für Binärprotokoll-Dateien auf 100 Megabyte.
 
 
 ## 5. Tests
