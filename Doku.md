@@ -61,7 +61,7 @@ Damit wir unser Projekt systemmatisch umsetzen können, haben wir einen groben Z
    | Abschluss | Bischofberger Leonie, Riedener Samuel, Davatz Ben | 17. - 19.12.2023 |
    
 ## 3. Voraussetzugen
-Das "initialWordPress.sh" Skript muss auf einem Linux Host, welcher mit aws cli installiert ist, ausgeführt werden. Die Dateien "initialmysql.txt" und "initialWordPress.txt" müssen im gleichen Ordner wie das "initialWordPress.sh" Script sein. Wir empfehlen, dass Script über die "awsclodshell" zu starten.
+Das "initialWordPress.sh" Skript muss auf einem Linux Host, welcher mit aws cli installiert und konfiguriert ist, ausgeführt werden. Die Dateien "initialmysql.txt" und "initialWordPress.txt" müssen im gleichen Ordner wie das "initialWordPress.sh" Script sein. Wir empfehlen, dass Script über die "awsclodshell" zu starten.
 
 ## 4. Umsetzung
 Um Wordpress in AWs zu installieren, haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
