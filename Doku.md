@@ -298,11 +298,13 @@ Dieser Befehl definiert, dass die folgenden Befehle für den Dienst MySQL gelten
 
 Nun wird festgelegt, dass der Server mit dem Benutzer "mysql" gestartet werden soll.
 
- `bind-address           = 127.0.0.1`
+ `#bind-address           = 127.0.0.1`
+ 
+Die bind-address Konfiguration ist in der Standardkonfiguration aktiv und muss zum Verbinden des MySQL Servers deaktiviert werden. Dazu wird dieser hier auskommentiert. 
  
  `mysqlx-bind-address     = 127.0.0.1`
 
-Dieser Befehl definiert, dass die MySQL X-Protokollbindung über die IP-Adresse "127.0.0.1" geführt wird. Die Konfigurationsdatei wird gebraucht um die Standarteinstellung auszukommentieren.
+Dieser Befehl definiert, dass die MySQL X-Protokollbindung über die IP-Adresse "127.0.0.1" geführt wird.
 
  `key_buffer_size         = 16M`
 
