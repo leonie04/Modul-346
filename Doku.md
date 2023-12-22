@@ -40,10 +40,10 @@ Davatz Ben, Riedener Samuel, Bischofberger Leonie
     
 
 ## 1. Zweck des Skripts und Git Repository
-Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommenntiert.
+Wir wurden beauftragt ein Script für das automatische einrichten eines CMS in AWS umzusetzen. Für das CMS nutzen wir WordPress und für AWS EC2. Der komplette Prozess der Erstellung wird mit Github dokumentiert und kommentiert.
 
 ## 2. Planung
-Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.3023 fertig haben, damit wir anschliessend noch genügend Zeit für die Dokumentation und alfällige Fehlerbehebung haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das dokumentieren aufteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
+Damit wir unser Projekt systemmatisch umsetzen können, haben wir einen groben Zeitplan erstellt. Wir möchten alle Scripts bis am 13.12.3023 fertig haben, damit wir anschliessend noch genügend Zeit für die Dokumentation und alfällige Fehlerbehebung haben. Anschliessend werden wir unsere Umgebung testen und den Abschluss unserer Dokumentation machen. Wir haben das Script erstellen und das dokumentieren aufteilt, weil wir denken dass wir so schneller zum gewünschten Endergebnis kommen.
 
    | Tätigkeit | Person | Zeitrahmen |
    |----------|----------|----------|
@@ -61,10 +61,10 @@ Damit wir unser Projekt Systemmatisch umsetzen können haben wir einen groben Ze
    | Abschluss | Bischofberger Leonie, Riedener Samuel, Davatz Ben | 17. - 19.12.2023 |
    
 ## 3. Voraussetzugen
-Das "initialWordPress.sh" Skript muss auf einem Linux Host, mit aws cli installiert, ausgeführrt werden. Die Dateinen "initialmysql.txt" und "initialWordPress.txt" müssen im gleichen Ordner wie das "initialWordPress.sh" sein.
+Das "initialWordPress.sh" Skript muss auf einem Linux Host, welcher mit aws cli installiert ist, ausgeführt werden. Die Dateien "initialmysql.txt" und "initialWordPress.txt" müssen im gleichen Ordner wie das "initialWordPress.sh" Script sein.
 
 ## 4. Umsetzung
-Um Wordpress in AWs zu installieren haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
+Um Wordpress in AWs zu installieren, haben wir verschiedene Scripts erstellt. Diese werden wir in diesem Kapitel erläutern.
 
 ### 4.1 Script installWordPress erklärt
 Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörigen Schlüsselpaaren und Sicherheitsgruppen erstellt.
@@ -80,8 +80,7 @@ Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. D
 `aws ec2 authorize-security-group-ingress --group-name wordpress-sec-group --protocol tcp --port 22 --cidr 0.0.0.0/0 | cat >> secGroup.log`
 
 
-
-Mit diesen Befehlen wird eine Sicherheitgruppe namens "wordpress-sec-group" und der Beschreibung "EC2-WordPress-SG" erstellt. Bei der erstellten Sicherheitsgruppe wird der Zugriff über HTTP (Port 80), HTTPS (Port 443), MySQL (Port 3306) und SSH (Port 22) von überall (0.0.0.0/0) freigegeben. Die Ausgaben der Befehle werden der Datei "secGroup.log" angefügt. Die Datei wird bei jedem Start des Script neu erstellt und enthält somit nur die Logs der aktuellen Scriptsitzung. 
+Mit diesen Befehlen wird eine Sicherheitgruppe namens "wordpress-sec-group" und der Beschreibung "EC2-WordPress-SG" erstellt. Bei der erstellten Sicherheitsgruppen wird der Zugriff über HTTP (Port 80), HTTPS (Port 443), MySQL (Port 3306) und SSH (Port 22) von überall (0.0.0.0/0) freigegeben. Die Ausgaben der Befehle werden der Datei "secGroup.log" angefügt. Die Datei wird bei jedem Start des Script neu erstellt und enthält somit nur die Logs der aktuellen Scriptsitzung. 
 
 `echo start mysql instance`
 `aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data `file://initialMySQL.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=MySQL_oie2ds45turo}]' |` `cat > MySQLInstance.log`
