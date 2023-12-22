@@ -189,6 +189,8 @@ Das Github wird geklont und in das Hauptverzeichnis kopiert. Anschliessen wird d
 Schlussendlich wird der SQL Server mit dem Namen "mysql" gestartet.
 
   `sleep 6s`
+
+  
   `sudo cp Modul-346/Configs/mysqld.cnf /etc/mysql/mysql.conf.d/`
 
 Mit diesen Befehlen wird zuerst 6 Sekunden gewartet und anschliessend das Dokument "mysql.conf" in den Ordner mysql.conf.d kopiert.
@@ -432,8 +434,8 @@ Ich denke wir haben dieses Projekt gut gelöst. Als wir die Aufgabe für dieses 
 Am Anfang konnten wir wählen zwischen den Projekten CMS, Ticketsystem, Bild verkleinern und StockPriceWatchdoc. Das Projekt Bild verkleinern kam uns am spannendsten und am besten umsetzbar vor. Doch wir haben schnell bemerkt, dass unser Wissensstand nicht genügend gross ist um dieses Projekt umzusetzen. Daher haben wir uns für das Projekt CMS entschieden.
 Beim Start des Projekts war ich sehr überfordert, da ich einige Lektionen, bei welchen wir das Thema durchgenommen haben, gefehlt habe. Daher war mein Wissensstand ziemlich klein. Aus diesem Grund war mein erster Schritt des Projekts, mich in das Thema hineinzudenken und Aufgaben nachzuholen. Durch Samuel Riedener habe ich auch nochmals vieles dazugelernt. Im Unterricht haben wir immer zusammen gearbeitet. Die Zeit im Unterricht konnten wir gut nutzen und die Zusammenarbeit hat ziemlich gut funktioniert. 
 Um Zuhause weiter zu arbeiten haben wir die Aufgaben sehr grob untereinander aufgeteilt. Leider hatten wir unter der Woche ziemlich schlechte Kommunikation. Wir haben uns gegenseitig kein update gegeben und wussten den Stand der Aufgaben erst wieder im Unterricht.
-Schade war das ich einmal, als ich an der Doku gearbeitet habe, den Laptop geschlossen habe ohne einen Commit durchzuführen. Somit waren zwei Stunden Arbeit verloren. Dies war das Erste Projekt, bei welchem ich die Dokumentation in einem Markdown Format in GitHub erstellen musste. Alle andere Dokumentationen habe ich mit Word durchgeführt. Darum bin ich mir gewöhnt, dass sich die Datei automatisch speichert.
-Bei meinem nächsten Projekt möchte ich einen solchen grossen Fehler vermeiden und auch von zuhause aus besser mit meiner Gruppe kommunizieren. Ansonsten kann ich viel gutes von diesem Projekt mitnehmen.
+Schade war das ich einmal, als ich an der Doku gearbeitet habe, den Laptop geschlossen habe ohne einen Commit durchzuführen. Somit waren zwei Stunden Arbeit verloren. Dies war das Erste Projekt, bei welchem ich die Dokumentation in einem Markdown Format in GitHub erstellen musste. Alle anderen Dokumentationen habe ich mit Word durchgeführt. Darum bin ich mir gewöhnt, dass sich die Datei automatisch speichert.
+Bei meinem nächsten Projekt möchte ich einen solchen grossen Fehler vermeiden und auch von Zuhause aus besser mit meiner Gruppe kommunizieren. Ansonsten kann ich viel gutes von diesem Projekt mitnehmen.
 
 ### 6.3 Riedener Samuel
 Das Projekt hat mir sehr gut gefallen. Ich hatte viel Spass am Testen und Überlegen wie ich unsere Probleme lösen muss. Teilweise war es auch etwas zäh. Zuerst wollten wir das Projekt Bild verkleinern machen. Allerdings haben wir da schnell gemerkt, dass wir das dazu notwendige Wissen im Programmieren noch nicht besitzen. Die Installation des CMS WordPress war dann allerdings genau das richtige. Ich konnte meine Erfahrungen mit Linux voll ausnutzen und so das Projekt zum Erfolg führen. Unglücklicherweise wurde ich in der letzten Woche noch krank und konnte nicht so viel Zeit investieren, wie ich wollte. Das Projekt konnten wir trotzdem noch gut abschliessen. In einem weiteren Projekt würde ich schauen, dass ich den Personen, die sich noch nicht so gut auskennen etwas besser aushelfe damit diese Linux besser kennen lernen.
