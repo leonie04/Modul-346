@@ -334,12 +334,6 @@ Mängelklasse: 0 = mängelfrei; 1 = belangloser Mangel; 2 = leichter Mangel; 3 =
    | Testschritte | Auf dem Linux Host wird der folgende Befehl ausgeführt: *aws ec2 describe-security-groups --group-name wordpress-sec-group* |
    | Erwartetes Ergebnis | Die Security-Group "wordpress-sec-group" wird aufgelistet und zeigt die richtige Konfiguration. |
    
-![describe-security-groups 1 von 3](bilder/Screenshot_2023-12-20_145615.png)
-
-![describe-security-groups 2 von 3](bilder/Screenshot_2023-12-20_145650.png)
-
-![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_145803.png)
-
 Testdurchführung und Testergebnis
    | Testdatum | 16.12.2023 |
    |----------|----------|
@@ -347,6 +341,12 @@ Testdurchführung und Testergebnis
    | Mängelklasse | 0 |
    | Mangelbeschreibung | Der Test wurde erfolgreich durchgeführt |
    | Bemerkungen | Die Security-Group "wordpress-sec-group" wurde aufgelistet und zeigt die richtige Konfiguration. Die Security-Group sollte nun dafür sorgen, dass alle Instanzen die richtigen Zugriffe besitzen, aber nur einer geringen Gefahr durch Zugriff von Böswilligen ausgesetzt sind. |
+
+![describe-security-groups 1 von 3](bilder/Screenshot_2023-12-20_145615.png)
+
+![describe-security-groups 2 von 3](bilder/Screenshot_2023-12-20_145650.png)
+
+![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_145803.png)
 
 ### 5.2 Testfall 2 
    |ID / Bezeichnung | T-002 Schlüsselpaar prüfen |
@@ -356,6 +356,7 @@ Testdurchführung und Testergebnis
    | Testschritte | AWS-Konsole starten und zum Bereich Netzwerk & Sicherheit gehen. Dort die Kategorie Schlüsselpaare auswählen. Nun in der Liste prüfen, ob ein Schlüsselpaar namens "aws-wordpress-cli" existiert. |
    | Erwartetes Ergebnis | Das Schlüsselpaar "aws-wordpress-cli" wurde erstellt.  |
 
+
 Testdurchführung und Testergebnis
    | Testdatum | 16.12.2023 |
    |----------|----------|
@@ -363,6 +364,8 @@ Testdurchführung und Testergebnis
    | Mängelklasse | 0 |
    | Mangelbeschreibung | Der Test wurde erfolgreich durchgeführt. |
    | Bemerkungen | Das Schlüsselpaar "aws-wordpress-cli" wurde erstellt und wurde den Instanzen zugeordnet. |
+
+![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_150257.png)
 
 ### 5.3 Testfall 3 
    |ID / Bezeichnung | T-003 Wordpress Installation prüfen |
@@ -380,6 +383,8 @@ Testdurchführung und Testergebnis
    | Mangelbeschreibung | Der Test wurde erfolgreich durchgeführt. |
    | Bemerkungen | Die Startseite der Wordpress-Instanz konnte im Browser geöffnet werden. Damit steht der Webserver nun zur Verfügung und kann verwendet werden.  |
 
+![describe-security-groups 3 von 3](bilder/WordPressStartseite.png)
+
 ### 5.4 Testfall 4 
    |ID / Bezeichnung | T-004 Prüfen ob SQL-Datenbank online ist |
    |----------|----------|
@@ -396,6 +401,9 @@ Testdurchführung und Testergebnis
    | Mangelbeschreibung | Die SQL-Datenbank wurde versehentlich vor dem Test gestoppt. Deshalb war der Server während dem Test offline. Nach dem Starten der Datenbank war sie bei einem zweiten Testversuch online und Verfügbar. |
    | Bemerkungen | Die SQL-Datenbank ist online. Die Datenbank wurde somit korrekt aufgesetz und kann verwendet werden. |   
 
+![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_151037.png)
+
+
 ### 5.5 Testfall 5 
    |ID / Bezeichnung | T-005 SQL User Berechtigung prüfen |
    |----------|----------|
@@ -411,6 +419,8 @@ Testdurchführung und Testergebnis
    | Mängelklasse | 0 |
    | Mangelbeschreibung | Es wurde ausgegeben, dass der User "wordpress" über die gewünschten Berechtigungen verfüggt. |
    | Bemerkungen | Der User Wordpress besitzt die Berechtigung SELECT, INSERT, UP-DATE, DELETE, CREATE, DROP und ALTER  |  
+
+![describe-security-groups 3 von 3](bilder/Screenshot_2023-12-20_151450.png)
 
 ## 6. Reflexion
 Im folgenden Kapitel werden wir unser Projekt reflektieren und Verbesserungsvorschläge darlegen.
