@@ -76,7 +76,7 @@ Mit dem "installWordPress.sh" Script werden zwei Instanzen mit den dazugehörige
 `aws ec2 create-key-pair --key-name aws-wordpress-cli --key-type rsa --query 'KeyMaterial' --output text > ~/.ssh/aws-wordpress-cli.pem`
 
  
-Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Anschliessend wird der private Schlüssel exportiert und in die Datei: "~/.ssh/aws-wordpress-cli.pem" geschrieben. Als Rückmeldung erhält man den Text "create sec group".
+Mit diesem Befehl wird ein Schlüsselpaar namens "AWS-wordpress-cli" erstellt. Das Schlüsselpaar verwendet den Typ "rsa". Anschliessend wird der private Schlüssel exportiert und in die Datei: "~/.ssh/aws-wordpress-cli.pem" geschrieben.
 
 
 `echo create sec group`
@@ -100,13 +100,13 @@ Als Rückmeldung erhält man den Text "start mysql instance". Mit diesen Befehle
 
 `cp initialWordPress.txt initialWordPressLive.txt`
 
-`public_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=MySQL_oie2ds45turo" --query` `"Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
+`public_ip=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=MySQL_oie2ds45turo" --query "Reservations[*].Instances[*].{PublicIP: PublicIpAddress}" --output text | grep -v None)`
 
 `sed -i "s/Soll_DB_Host_IP/$public_ip/" initialWordPresslive.txt`
 
 Die Datei initialWordPress.txt wird kopiert und die Kopie wird umbenannt initialWordPressLive.txt. Die IP-Adresse der erstellten Instanz wird dann abgefragt und in die Variable pubilc_ip geschrieben. Anschliessend wird die Variable in das Dokument "initialWordPressLive.txt" kopiert. 
 
-  `echo start wordpress instance`
+`echo start wordpress instance`
   
 `aws ec2 run-instances --image-id ami-0fc5d935ebf8bc3bc --count 1 --instance-type t2.micro --key-name aws-wordpress-cli --security-groups wordpress-sec-group --iam-instance-profile Name=LabInstanceProfile --user-data file://initialWordPressLive.txt --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=WordPress}]' | cat > WordPressInstance.log`
 
@@ -205,24 +205,24 @@ Mit den Configs werden MYSQL und Wordpress konfiguriert.
 #### 4.4.1 wp-config
 Dieses Script wird als konfigurationsgrundlage für die Installation von Worpress verwendet. Dieses Config wird von Worpress bereitgestellt und man kann darin noch seine benötigten eigenen Variablen einfügen.
 
-```define( 'DB_NAME', 'wordpress' );```
-```define( 'DB_USER', 'wordpress' );```
-```define( 'DB_PASSWORD', 'p!&vvvn?GtgJ0cRs!gHd[7w@Z&@GMG>pETwzV$.1jw(Ej*^w2mt=*St0n$Hy]TW;' );```
-```define( 'DB_HOST', 'DB_Host_IP' );```
-```define( 'DB_CHARSET', 'utf8' );```
-```define( 'DB_COLLATE', '' );```
+```define( 'DB_NAME', 'wordpress' );``` \
+```define( 'DB_USER', 'wordpress' );```\
+```define( 'DB_PASSWORD', 'p!&vvvn?GtgJ0cRs!gHd[7w@Z&@GMG>pETwzV$.1jw(Ej*^w2mt=*St0n$Hy]TW;' );``` \
+```define( 'DB_HOST', 'DB_Host_IP' );``` \
+```define( 'DB_CHARSET', 'utf8' );``` \
+```define( 'DB_COLLATE', '' );``` 
 
 Mit diesen Befehlen werden die folgednen Elemente definiert: Datenbankname, Datenbankuser, Datenbankpasswort, Datenbankhostnamen und Datenbankcharset 
 
 
-  ```define('AUTH_KEY',         '4^*;gYe@h>iOHX/Q8YwJ[F{h)Wq@!n%76uWqcjjUrH-+udb2B[OrB*8$(>M}78II');```
-  ```define('SECURE_AUTH_KEY',  '5SI@(M+l]}GU|u3*m1;zWV5Cw3y#g<H3T2s%-ydT_|Xt3!1m {k)D&mLU+ G/FOH');```
-  ```define('LOGGED_IN_KEY',    'Z%-oXcX2`TDK}xV.DOq]^`41juCRi4tzA}^#+OvllHl4#p|X)/ u-~!K$}O}sVyW');```
-  ```define('NONCE_KEY',        '^f}0|qU4+%-%`dA2>%^HWMBUeOVWyR>fQ9Om-b0>kin)mHl7SDLIm7em|aaAc9[Z');```
-  ```define('AUTH_SALT',        'jSewMFUv{5q`|/.+1@upg5GAmt;-.~N0wO$${Yp{/)M%_iH_.LGg>v|Mj2&Ii>EQ');```
-  ```define('SECURE_AUTH_SALT', '@]1~{mpNVaMm{0p!qA4V8Q!%2RXx:#>J6+u;2psy~4X-:4s;dxrte7j<UUYu.WwL');```
-  ```define('LOGGED_IN_SALT',   'iyc+jAF5(X95FkYqg{|6>T7%kQ=;3LD>k!1Gv[HE!>)Cdk%|P>w)E/wg=4G+(<d/');```
-  ```define('NONCE_SALT',       'T4fU0<WU(289+6DpqhQT+!=6oTo<f{K;x tOE`0@z#2[jc1~#-RoN::5-(+w?Cr|');```
+  ```define('AUTH_KEY',         '4^*;gYe@h>iOHX/Q8YwJ[F{h)Wq@!n%76uWqcjjUrH-+udb2B[OrB*8$(>M}78II');``` \
+  ```define('SECURE_AUTH_KEY',  '5SI@(M+l]}GU|u3*m1;zWV5Cw3y#g<H3T2s%-ydT_|Xt3!1m {k)D&mLU+ G/FOH');``` \
+  ```define('LOGGED_IN_KEY',    'Z%-oXcX2`TDK}xV.DOq]^`41juCRi4tzA}^#+OvllHl4#p|X)/ u-~!K$}O}sVyW');``` \
+  ```define('NONCE_KEY',        '^f}0|qU4+%-%`dA2>%^HWMBUeOVWyR>fQ9Om-b0>kin)mHl7SDLIm7em|aaAc9[Z');``` \
+  ```define('AUTH_SALT',        'jSewMFUv{5q`|/.+1@upg5GAmt;-.~N0wO$${Yp{/)M%_iH_.LGg>v|Mj2&Ii>EQ');``` \
+  ```define('SECURE_AUTH_SALT', '@]1~{mpNVaMm{0p!qA4V8Q!%2RXx:#>J6+u;2psy~4X-:4s;dxrte7j<UUYu.WwL');``` \
+  ```define('LOGGED_IN_SALT',   'iyc+jAF5(X95FkYqg{|6>T7%kQ=;3LD>k!1Gv[HE!>)Cdk%|P>w)E/wg=4G+(<d/');``` \
+  ```define('NONCE_SALT',       'T4fU0<WU(289+6DpqhQT+!=6oTo<f{K;x tOE`0@z#2[jc1~#-RoN::5-(+w?Cr|');``` 
 
 Mit diesen Befehlen werden einzigartige Schlüssel für die Authentifizierung definiert.
 
@@ -459,52 +459,6 @@ Zusätzlich zu den Internetquellen haben wir auch im Berufsschulunterricht immer
    | 09-AA-EC2-Instance-CLI.pdf | 09.12.2023 |
    | 346-10-AA-IaC Beispiel.pdf | 09.12.2023 |
    | 09-AA-EC2-Instance-CLI.pdf | 09.12.2023 |
-
-
-## 3. Formatierungen
-   | Spalte 1 | Spalte 2 |
-   |----------|----------|
-   | Inhalt 1 | Inhalt 2 |
-   | Inhalt 3 | Inhalt 4 |
-   | grosser Inhalt 1 | grosser Inhalt 2 |
-
-
-### 1.1 Unterkapitel
-
-  UnterkapitelUnterkapitel Unterkapitel Unterkapitel Unterkapitel Unterkapitel UnterkapitelUnterkapitelUnterkapitelUnterkapitel Unterkapitel \
-  UnterkapitelUnterkapitel Unterkapitel  Unterkapitel UnterkapitelUnterkapitel UnterkapitelUnterkapitelUnterkapitelUnterkapitelUnterkapitel
-
-
-## 3. Reflexion
-
-
-   ![Bild Baum]([https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.baumpflegeportal.de%2Faktuell%2Fstarke-baumtypen-baum-seidengewand%2F&psig=AOvVaw3BJUOU8hw4QeMupOjJ_ACr&ust=1702492127631000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCICTjcnDioMDFQAAAAAdAAAAABAD])
-
-
- **Fettschrift** \
- *Kursivschrift*
-  
-- Aufzählung 1
-- Aufzählung 2
-
-1. Schritt 1
-2. Schritt 2
-    
-# Überschriftsebene 1 
-## Überschriftsebene 2
-### Überschriftsebene 3
-
-> Blockzitate müssen mit einer Leerzeile beginnen und enden
-
-> Jede Zeile des Zitats beginnt mit einer rechten spitzen Klammer und einem Leerzeichen
-
- `Inlinecode`
-
- ## 4. Weitere Funktionen
-
- ### 4.1 Unterkapitel
-
- > Weitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere FunktionenWeitere Funktionen
 
 
 
